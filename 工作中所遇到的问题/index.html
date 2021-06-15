@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/fonts/Candyshop.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.74" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=0.0.74">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=0.0.74">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.0.74" color="#fff">
+
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+
+  <meta name="keywords" content="colorfulWorld,blog" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ColorfulWorld" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="记录一下自己在工作中所遇到的问题及及解决方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作中所遇到的问题">
+<meta property="og:url" content="https://colorfulworld.github.io/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="ColorfulWorld">
+<meta property="og:description" content="记录一下自己在工作中所遇到的问题及及解决方案">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-03-11T08:06:45.000Z">
+<meta property="article:modified_time" content="2021-02-27T12:24:38.489Z">
+<meta property="article:author" content="ColorfulWorld">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.0.74',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '6/21/2016 11:30:00',
+    site: {
+      title: '',
+      subtitle: '',
+      author: ''
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/favicon.ico',
+      hidden: '/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.2/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://colorfulWorld.github.io/工作中所遇到的问题/"/>
+
+
+
+
+
+  <title>工作中所遇到的问题 | ColorfulWorld</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fas fa-meteor"></i> <br />
+            
+            首页
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fas fa-archive"></i> <br />
+            
+            归档
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fas fa-calendar"></i> <br />
+            
+            分类
+          </a>
+          
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper">
+  <div class="site-brand-bg">
+    <picture>
+      <img loading="lazy" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/githubpage-bg.jpg">
+    </picture>
+  </div>
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate-stroke" class="animate">
+            <span>
+                  <svg>
+                    <use xlink:href="#strokeC"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokef"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeu"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeW"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroked"></use>
+                  </svg>
+                </span>
+          </div>
+          <div id="animate" class="animate">
+            <span>
+                  <svg>
+                    <text id="strokeC">C</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokef">f</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeu">u</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeW">W</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroked">d</text>
+                  </svg>
+                </span>
+          </div>
+          <div id="guide" class="guide">
+            <span>C</span><span>o</span><span>l</span><span>o</span><span>r</span><span>f</span><span>u</span><span>l</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar scaleup" itemprop="image" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg" alt="network" />
+    <h2 class="site-master-description scaleup" itemprop="description">
+        不负所爱
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">03月</div>
+			<div class="post-day">11</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/JavaScript/" itemprop="url" rel="index">
+          <span itemprop="name">JavaScript</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://colorfulWorld.github.io/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColorfulWorld">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">工作中所遇到的问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T16:06:45+08:00">2019-03-11</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="far fa-file-word"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">2198</span>
+              
+
+              
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91-%E8%B7%A8%E5%9F%9F-%E5%9F%BA%E7%A1%80"><span class="nav-text">本地开发 跨域 (基础)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E8%B1%A1%E6%88%96%E8%80%85%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%80%BC"><span class="nav-text">查找对象或者中是否有存在某个值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8-jQuery-%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%93%81%E7%B1%BB%E8%B4%AD%E4%B9%B0%E7%9A%84%E8%B4%AD%E7%89%A9%E8%BD%A6"><span class="nav-text">用 jQuery 实现多品类购买的购物车</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-script-%E5%8D%95%E7%8B%AC%E5%BC%95%E5%85%A5-vue-js"><span class="nav-text">通过 script 单独引入 vue.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC"><span class="nav-text">前端导出表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-open-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%A6%E6%88%AA"><span class="nav-text">window.open 浏览器拦截</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%8F%B7%E5%8A%A0%E7%A9%BA%E6%A0%BC"><span class="nav-text">银行卡号加空格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C"><span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%89"><span class="nav-text">方案三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87script-%E5%8D%95%E7%8B%AC%E5%BC%95%E5%85%A5vue-js"><span class="nav-text">通过script 单独引入vue.js</span></a></li></ol></div>
+      
+      
+
+      
+        <p>记录一下自己在工作中所遇到的问题及及解决方案</p>
+<span id="more"></span>
+
+<h2 id="本地开发-跨域-基础"><a href="#本地开发-跨域-基础" class="headerlink" title="本地开发 跨域 (基础)"></a>本地开发 跨域 (基础)</h2><p>在本地开发 请求线上的接口时 会遇到跨域的问题 那时如何解决的呢？</p>
+<ul>
+<li>  使用 <code>chrome</code> 浏览器的跨域设置 （适用与不使用 webpack 打包的项目）</li>
+<li>  webpack 配置 <code>proxyConfig</code>设置代理</li>
+<li>  使用 Nginx 等反向代理工具</li>
+<li>  使用 fiddler 等拦截转发工具</li>
+</ul>
+<h2 id="查找对象或者中是否有存在某个值"><a href="#查找对象或者中是否有存在某个值" class="headerlink" title="查找对象或者中是否有存在某个值"></a>查找对象或者中是否有存在某个值</h2><ol>
+<li><code>indexOf(1)</code>;<br>对于浅数组使用好用，对于复杂数组，数组嵌套对象再嵌套数组 且是动态取值比较的 用 indexOf 就难比较，因为 indexOf 计较的值一旦索引发生了改变就没有办法比较是否存在某一个对象了。这种情况 将数组进行 JSON.stringfy 后再 indexOf 就可以解决了</li>
+<li><code>arr.find()</code><br>数组实例的<code>find()</code>用于查找目标元素，查不到返回 <code>undefined</code></li>
+<li>对象中直接使用<code>array[kry]</code>调用，若没有则会返回<code>undefined</code>且不会报错。</li>
+</ol>
+<h2 id="用-jQuery-实现多品类购买的购物车"><a href="#用-jQuery-实现多品类购买的购物车" class="headerlink" title="用 jQuery 实现多品类购买的购物车"></a>用 jQuery 实现多品类购买的购物车</h2><ol>
+<li><p>在页面中能对单个物品进行加减并加入到购物车的操作，保证购物车物品的唯一，最新的特性，考虑到这个情况，是用一下思路解决的：</p>
+<ul>
+<li>在点击物品时将物品的单个信息对象保存下来，加减时操作信息对象</li>
+<li>点击加入购物车时，将信息对象的 id 拿出来当成对象的 key 值添加到对象中，利用对象 key 的唯一性，且能更好的进行覆盖和删除操作。</li>
+<li>在整个流程中利用数组对象的指针特性，改变其中的某一个值影响到原本的对象，保证了多个视图层的数据统一性。</li>
+</ul>
+</li>
+<li><p>考虑到页面中能进行筛选和搜索（都是从后台重新拿取的数据），重新渲染物品列表导致原本的购物数量的信息丢失。</p>
+<ul>
+<li>在从接口获取数组列表时，就比对原本的购物车列表，再进行刷新渲染</li>
+</ul>
+</li>
+<li><p>因为使用的 jquery,所以想封装一个组件，组件中 监听一个 click 事件 并且可以执行相应的回调， 当时用的事件委托 ，暂时还不知道怎么封装，类似于商品列表的加减器和购物车列表的加减器</p>
+</li>
+</ol>
+<h2 id="通过-script-单独引入-vue-js"><a href="#通过-script-单独引入-vue-js" class="headerlink" title="通过 script 单独引入 vue.js"></a>通过 script 单独引入 vue.js</h2><p>最开始接触 vue.js 时，最开始有两个使用途径，一个是 vue-cli 脚手架的单页应用，一个是通过 script 单链引入的形式。</p>
+<p>在使用单链的时候在进入首屏时，遇到过如下问题：</p>
+<ul>
+<li>  页面中会出现 vue 的未解析的符号，例如&#123;&#123;&#125;&#125;和初始样式。</li>
+<li>  当 js 判断再引入主题皮肤 css 时，会有很大一段时间是原始样式在突然过度到皮肤样式，不够美观，而且很奇怪</li>
+</ul>
+<p>当时没有想清楚，然后搁置之后就忘记了这个问题，如今又要负责这种单链的页面，又遭遇了一样的问题，才惊觉其原因：<br>首先我们将 vue.min.js 在 body 后面才引入的，把 vue.min.js 放在 head 中就可以解决了出现未解析的符号这个问题。是由于加载 html 之后还没有加载 js 对页面进行解析才出现了这个问题</p>
+<p>那未初始化的样式该如何解决呢？<br>在以前是通过操作 css 来解决的，</p>
+<ul>
+<li>  最开始默认样式是 display：none 通过 js 控制 class 而不是直接通过 v-show 操作。相当于 v-show v-if 全部不用。（好痛苦啊这种方案）。</li>
+<li>  还有一种是加 loading，在 creat 里面 loading 结束。</li>
+</ul>
+<p>v-show\v-if 是无法操作 css 样式为 display：none 的元素的。</p>
+<p>而且单链的形式都没有办法用 es6 和封装组件，没有成熟的生态圈。这种开发方式太痛苦了，最可怕的是单链 vue+前后不分离。。。。我选择死亡。而且单链这种模式如何封装组件呢？这是个问题。</p>
+<h2 id="前端导出表格"><a href="#前端导出表格" class="headerlink" title="前端导出表格"></a>前端导出表格</h2><p>很早就做过导出表格的功能，也有考虑过前端是否能导出 excel 表格。现在看到了一个纯前端导出文件的插件——<code>SheetJS</code></p>
+<p>纯前端的实现方案能够在不依赖服务端能力和网络的情况下完成数据导出。虽然如此，数据量较大的时候，站在性能及用户体验的角度，在服务端完成会是更优雅的解法。</p>
+<h2 id="window-open-浏览器拦截"><a href="#window-open-浏览器拦截" class="headerlink" title="window.open 浏览器拦截"></a>window.open 浏览器拦截</h2><p>window.open 可以实现打开一个新浏览器窗口。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = $(<span class="string">&quot;#btn&quot;</span>);</span><br><span class="line">btn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//不会被拦截</span></span><br><span class="line">    <span class="built_in">window</span>.open(<span class="string">&quot;http://www.baidu.com&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果是用户触发的时候，是不会拦截的，可以正常打开新窗口，所以，如果是用户主动触发弹窗，浏览器一般不会拦截。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = $(<span class="string">&quot;#btn&quot;</span>);</span><br><span class="line">btn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: <span class="string">&quot;ooxx&quot;</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//会被拦截</span></span><br><span class="line">            <span class="built_in">window</span>.open(url);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如上用户没有直接触发 window.open,而是发出一个 ajax 请求，window.open 方法被放在了 ajax 的回调函数里，这样的情况是会被拦截的</p>
+<ul>
+<li>  当浏览器检测到非用户操作产生的新弹出窗口，则会对其进行阻止。因为浏览器认为这不是用户希望看到的页面</li>
+<li>  在 chrome 的安全机制里面，非用户触发的 window.open 方法，是会被拦截的。</li>
+</ul>
+<p>如何解决弹窗被拦截的问题，可以先打开一个不被拦截的空窗口，在异步请求后将 href 替换。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = $(<span class="string">&quot;#btn&quot;</span>);</span><br><span class="line">btn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//打开一个不被拦截的新窗口</span></span><br><span class="line">    <span class="keyword">var</span> newWindow = <span class="built_in">window</span>.open();</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: <span class="string">&quot;ooxx&quot;</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//修改新窗口的url</span></span><br><span class="line">            newWindow.location.href = url;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="银行卡号加空格"><a href="#银行卡号加空格" class="headerlink" title="银行卡号加空格"></a>银行卡号加空格</h2><p>给用户输入的银行卡号 每隔 4 位加一个空格，切只能输入数字</p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">    type=&quot;text&quot;</span><br><span class="line">    onkeypress=&quot;return (function(key,that)&#123;return (key&gt;47&amp;&amp;key&lt;58) &amp;&amp; ((that.value.length%5==0)?that.value+=&#x27; &#x27;:1)&#125;)(event.keyCode,this)&quot;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在 chrome 上输入数字的体验特别良好，输入中文时就会出现不触发 onKeypress 事件， 更重要的是无法兼容移动端，在华为浏览器上就死在第一步，所以就直接抛弃。</p>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">    type=<span class="string">&quot;text&quot;</span></span><br><span class="line">    id=<span class="string">&quot;bankId&quot;</span></span><br><span class="line">    maxlength=<span class="string">&quot;23&quot;</span></span><br><span class="line">    placeholder=<span class="string">&quot;请输入银行卡号&quot;</span></span><br><span class="line">    oninput=<span class="string">&quot;value=value.replace(/[^\d\s]/g,&#x27;&#x27;)&quot;</span></span><br><span class="line">/&gt;;</span><br><span class="line"></span><br><span class="line">input.on(<span class="string">&quot;keyup&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    v = <span class="built_in">this</span>.value;</span><br><span class="line">    v = v.replace(<span class="regexp">/\s*/g</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/\S&#123;5&#125;/</span>.test(v)) &#123;</span><br><span class="line">        <span class="built_in">this</span>.value = v.replace(<span class="regexp">/(\d&#123;4&#125;)(?=\d)/g</span>, <span class="string">&quot;$1 &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>暂时没有发现什么 BUG,后记：是有BUG的，比如一直输入中文</p>
+<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input.on(<span class="string">&quot;keyup&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value = <span class="built_in">this</span>.value;</span><br><span class="line">    value = value.replace(<span class="regexp">/\s*/g</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; i != <span class="number">0</span>) &#123;</span><br><span class="line">            result.push(<span class="string">&quot; &quot;</span> + value.charAt(i));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            result.push(value.charAt(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.value = result.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>暂时也没有发现什么 BUG</p>
+<h2 id="通过script-单独引入vue-js"><a href="#通过script-单独引入vue-js" class="headerlink" title="通过script 单独引入vue.js"></a>通过script 单独引入vue.js</h2><p>最开始接触vue.js时，最开始有两个使用途径，一个是vue-cli 脚手架的单页应用，一个是通过script 单链引入的形式。</p>
+<p>在使用单链的时候在进入首屏时，遇到过如下问题：</p>
+<ul>
+<li>页面中会出现vue 的未解析的符号，例如&#123;&#123;&#125;&#125;和初始样式。</li>
+<li>当js判断再引入主题皮肤css 时，会有很大一段时间是原始样式在突然过度到皮肤样式，不够美观，而且很奇怪</li>
+</ul>
+<p>当时没有想清楚，然后搁置之后就忘记了这个问题，如今又要负责这种单链的页面，又遭遇了一样的问题，才惊觉其原因：<br>首先我们将vue.min.js在body 后面才引入的，把vue.min.js放在head中就可以解决了出现未解析的符号这个问题。是由于加载html之后还没有加载js对页面进行解析才出现了这个问题</p>
+<p>那未初始化的样式该如何解决呢？<br>在以前是通过操作css 来解决的，</p>
+<ul>
+<li>最开始默认样式是display：none 通过js控制class 而不是直接通过v-show操作。相当于v-show v-if 全部不用。（好痛苦啊这种方案）。</li>
+<li>还有一种是加loading，在creat里面loading结束。</li>
+</ul>
+<p>v-show\v-if 是无法操作css样式为display：none的元素的。</p>
+<p>而且单链的形式都没有办法用es6和封装组件，没有成熟的生态圈。这种开发方式太痛苦了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;display:none;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <picture><source srcset="/images/wechatpay.webp" type="image/webp"><img loading="lazy" id="wechat_qr" src="/images/wechatpay.png" alt=" 微信扫一扫，向我赞赏"/></picture>
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <picture><source srcset="/images/alipay.webp" type="image/webp"><img loading="lazy" id="alipay_qr" src="/images/alipay.png" alt=" 支付宝扫一扫，向我赞赏"/></picture>
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Vue-js%E5%86%85%E9%83%A8%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" rel="next" title="Vue.js内部运行机制">
+                <i class="fas fa-angle-left"></i> Vue.js内部运行机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/css-%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="prev" title="css 小知识">
+                css 小知识 <i class="fas fa-angle-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+                <audio src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/music/langlangqintian.mp3"  controls="controls" style="width:100%;height:35px;"></audio>
+            
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/gihubpage-1.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">卑微的</span>打工仔</p>
+              <p class="site-description motion-element" itemprop="description">瑜者？愉者、愚者</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          <div class="des-of-author">
+              <div class="des-of-author-nav">
+                
+                  
+                    <div class="des-of-author-title active" data-index="1">罗曼·罗兰</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="2">村上春树</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="3">宫崎骏</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="4">道德经</div>
+                  
+                
+              </div>
+              <div class="des-of-author-panel">
+                
+                  
+                    <div class="des-of-author-des active" data-index="1">世界上只有一种真正的英雄主义，就是认清了生活的真相后还依然热爱它。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="2">你要听话，不是所有的鱼都会生活在同一片海里。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="3">即使不舍，也该心存感激，然后挥手道别。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="4">知白守黑 和光同尘</div>
+                  
+                
+              </div>
+          </div>
+
+          <details class="views-top-wrap" style="display:none;">
+            <summary class="views-top-name scaleup">看爆 Top5</summary>
+            <ul class="views-top"></ul>
+          </details>
+
+   
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91-%E8%B7%A8%E5%9F%9F-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">本地开发 跨域 (基础)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E8%B1%A1%E6%88%96%E8%80%85%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">查找对象或者中是否有存在某个值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8-jQuery-%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%93%81%E7%B1%BB%E8%B4%AD%E4%B9%B0%E7%9A%84%E8%B4%AD%E7%89%A9%E8%BD%A6"><span class="nav-number">3.</span> <span class="nav-text">用 jQuery 实现多品类购买的购物车</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-script-%E5%8D%95%E7%8B%AC%E5%BC%95%E5%85%A5-vue-js"><span class="nav-number">4.</span> <span class="nav-text">通过 script 单独引入 vue.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC"><span class="nav-number">5.</span> <span class="nav-text">前端导出表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-open-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%A6%E6%88%AA"><span class="nav-number">6.</span> <span class="nav-text">window.open 浏览器拦截</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%8F%B7%E5%8A%A0%E7%A9%BA%E6%A0%BC"><span class="nav-number">7.</span> <span class="nav-text">银行卡号加空格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80"><span class="nav-number">7.1.</span> <span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C"><span class="nav-number">7.2.</span> <span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%89"><span class="nav-number">7.3.</span> <span class="nav-text">方案三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87script-%E5%8D%95%E7%8B%AC%E5%BC%95%E5%85%A5vue-js"><span class="nav-number">8.</span> <span class="nav-text">通过script 单独引入vue.js</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image">
+
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/footer.png" alt="network">
+      </div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+
+
+<p>© <span itemprop="copyrightYear">2021</span> ColorfulWorld.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.74.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+</p>
+<p>Made with <i class="fas fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">ColorfulWorld</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/images/scroll.png" alt="network">
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.74"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!--<script>
+    // remove service worker cache
+    // from https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
+    "use strict";
+    if(navigator.serviceWorker)
+    {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+  </script>-->
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+</body>
+</html>

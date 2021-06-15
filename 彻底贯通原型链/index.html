@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/fonts/Candyshop.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.74" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=0.0.74">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=0.0.74">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.0.74" color="#fff">
+
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+
+  <meta name="keywords" content="colorfulWorld,blog" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ColorfulWorld" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="原型链的串联及扩展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="彻底贯通原型链">
+<meta property="og:url" content="https://colorfulworld.github.io/%E5%BD%BB%E5%BA%95%E8%B4%AF%E9%80%9A%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
+<meta property="og:site_name" content="ColorfulWorld">
+<meta property="og:description" content="原型链的串联及扩展">
+<meta property="og:locale">
+<meta property="og:image" content="https://colorfulworld.github.io/images/prototype/1.png">
+<meta property="og:image" content="https://colorfulworld.github.io/images/prototype/prototype.image">
+<meta property="og:image" content="https://colorfulworld.github.io/images/prototype/constructor.png">
+<meta property="og:image" content="https://colorfulworld.github.io/images/prototype/2.png">
+<meta property="og:image" content="https://colorfulworld.github.io/images/prototype/instanceof.image">
+<meta property="article:published_time" content="2018-01-18T02:15:34.000Z">
+<meta property="article:modified_time" content="2021-05-26T13:59:07.447Z">
+<meta property="article:author" content="ColorfulWorld">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://colorfulworld.github.io/images/prototype/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.0.74',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '6/21/2016 11:30:00',
+    site: {
+      title: '',
+      subtitle: '',
+      author: ''
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/favicon.ico',
+      hidden: '/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.2/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://colorfulWorld.github.io/彻底贯通原型链/"/>
+
+
+
+
+
+  <title>彻底贯通原型链 | ColorfulWorld</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fas fa-meteor"></i> <br />
+            
+            首页
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fas fa-archive"></i> <br />
+            
+            归档
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fas fa-calendar"></i> <br />
+            
+            分类
+          </a>
+          
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper">
+  <div class="site-brand-bg">
+    <picture>
+      <img loading="lazy" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/githubpage-bg.jpg">
+    </picture>
+  </div>
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate-stroke" class="animate">
+            <span>
+                  <svg>
+                    <use xlink:href="#strokeC"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokef"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeu"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeW"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroked"></use>
+                  </svg>
+                </span>
+          </div>
+          <div id="animate" class="animate">
+            <span>
+                  <svg>
+                    <text id="strokeC">C</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokef">f</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeu">u</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeW">W</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroked">d</text>
+                  </svg>
+                </span>
+          </div>
+          <div id="guide" class="guide">
+            <span>C</span><span>o</span><span>l</span><span>o</span><span>r</span><span>f</span><span>u</span><span>l</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar scaleup" itemprop="image" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg" alt="network" />
+    <h2 class="site-master-description scaleup" itemprop="description">
+        不负所爱
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">01月</div>
+			<div class="post-day">18</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/JavaScript/" itemprop="url" rel="index">
+          <span itemprop="name">JavaScript</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://colorfulWorld.github.io/%E5%BD%BB%E5%BA%95%E8%B4%AF%E9%80%9A%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColorfulWorld">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">彻底贯通原型链</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T10:15:34+08:00">2018-01-18</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="far fa-file-word"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">1897</span>
+              
+
+              
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B"><span class="nav-text">原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype-%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-text">prototype 属性的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%BC%A0%E5%9B%BE%E8%AF%BB%E6%87%82%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%85%B3%E7%B3%BB"><span class="nav-text">一张图读懂完整的原型链关系**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4%E3%80%82"><span class="nav-text">原型链的作用：对象属性的访问修改和删除。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor-NaN"><span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proto-%EF%BC%88%E5%8E%9F%E5%9E%8B%E6%8C%87%E9%92%88%EF%BC%89"><span class="nav-text">proto （原型指针）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9B%BE"><span class="nav-text">原型链图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof"><span class="nav-text">instanceof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null-instanceof-Object-%E4%B8%BA-false"><span class="nav-text">null instanceof Object 为 false</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof-%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">instanceof 的底层实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof-%E4%B8%8E-constructor-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">instanceof 与 constructor 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-text">Object.prototype.toString.call</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-text">特殊的箭头函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%89%A9%E5%B1%95"><span class="nav-text">文章扩展</span></a></li></ol></div>
+      
+      
+
+      
+        <p>原型链的串联及扩展</p>
+<span id="more"></span>
+
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>原型：每一个对象都从原型继承属性。<strong>每个对象都有 <em>proto</em> 属性 , 每个对象都有原对象，但只有函数对象才有 prototype 属性</strong>, 但是除却 function.prototype,function.prototype 也是函数对象，但是没有 prototype。可以使用 p.isPrototype(o) 来检查 p 是否是 o 的原型。</p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><ol>
+<li><strong>proto</strong>、 constructor 属性是对象所独有的；</li>
+<li>prototype 属性是函数独有的；</li>
+<li>上面说过 js 中函数也是对象的一种，那么函数同样也有属性<strong>proto</strong>、 constructor；</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> a()</span><br><span class="line"><span class="built_in">console</span>.log(b.prototype) <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> <span class="built_in">Function</span>) <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>原型模式是 js 对继承的一种实现</p>
+<ul>
+<li><p>prototype：构造函数中的属性，指向该构造函数的原型对象。</p>
+</li>
+<li><p>constructor ：原型对象中的属性，指向该原型对象的构造函数</p>
+</li>
+<li><p>_proto_：实例中的属性，指向 new 这个实例的构造函数的原型对象，对象可以通过<code>_proto_</code>来寻找不属于该对象的属性，<code>_proto_</code>将对象连接起来组成原型链。所有引用类型的<em>proto</em>属性值均指向它的构造函数的 prototype 的属性值。当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去他的<em>proto</em>（即它的构造函数的 prototype）中寻找</p>
+</li>
+</ul>
+<h2 id="prototype-属性的引入"><a href="#prototype-属性的引入" class="headerlink" title="prototype 属性的引入"></a>prototype 属性的引入</h2><p><strong>prototype 是一个对象</strong></p>
+<p>每一个 new 出的实例都有自己的属性和方法的副本，无法做到属性、方法共享，因此 Brendan Eich 决定为构造函数设置一个 prototype 属性。</p>
+<p>这个对象包含一个对象（以下简称 “prototype 对象 ”），所有实例对象需要共享的属性及方法，都放在这个对象里面，那些不需要共享的属性及方法，就放在构造函数里面。</p>
+<p>实例对象一旦创建，就自动引用 prototype 对象的属性和方法。也就是说。实例对象的属性和方法，分成两种，一种是本地的，一种是引用的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DOG</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line">DOG.prototype = &#123; <span class="attr">species</span>: <span class="string">&#x27;犬科&#x27;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dogA = <span class="keyword">new</span> DOG(<span class="string">&#x27;大毛&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> dogB = <span class="keyword">new</span> DOG(<span class="string">&#x27;二毛&#x27;</span>)</span><br><span class="line"></span><br><span class="line">alert(dogA.species)</span><br><span class="line"><span class="comment">// 其实是通过dogA._proto_.species 来访问DOG.prototype.species</span></span><br><span class="line">alert(dogB.species)</span><br><span class="line"><span class="comment">// 犬科</span></span><br><span class="line">DOG.prototype</span><br><span class="line"><span class="comment">//&#123;species:&#x27;&#x27;犬科&#x27;,constructor:fDOG(name),_proto_:Object&#125;</span></span><br><span class="line">DOG.prototype.constructor === DOG</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>现在，species 属性放在 prototype 对象里，是两个实例对象共享的。只要修改了 prototype 对象，就会同时影响到两个实例对象。</p>
+<p><img src="/images/prototype/1.png" alt="network"></p>
+<h3 id="一张图读懂完整的原型链关系"><a href="#一张图读懂完整的原型链关系" class="headerlink" title="一张图读懂完整的原型链关系**"></a>一张图读懂完整的原型链关系**</h3><p><img src="/images/prototype/prototype.image" alt="network"></p>
+<h3 id="原型链的作用：对象属性的访问修改和删除。"><a href="#原型链的作用：对象属性的访问修改和删除。" class="headerlink" title="原型链的作用：对象属性的访问修改和删除。"></a>原型链的作用：对象属性的访问修改和删除。</h3><ul>
+<li>访问。优先在对象本身查找，没有则顺着原型链向上查找</li>
+<li>修改。只能修改跟删除自身属性，不会影响到原型链上的其他对象。</li>
+</ul>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p>constructor 属性获取创造自己的构造函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Parent = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">//定义一个函数，那它只是一个普通的函数，下面我们让这个函数变得不普通</span></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Parent()</span><br><span class="line"><span class="comment">//这时这个Parent就不是普通的函数了，它现在是一个构造函数。因为通过new关键字调用了它</span></span><br><span class="line"><span class="comment">//创建了一个Parent构造函数的实例 p1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/prototype/constructor.png" alt="network"></p>
+<h2 id="proto-（原型指针）"><a href="#proto-（原型指针）" class="headerlink" title="proto （原型指针）"></a><em>proto</em> （原型指针）</h2><p>_proto** 和 prototype 的关系是 **proto__ 是 prototype 的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name</span><br><span class="line">  <span class="built_in">this</span>.age = age</span><br><span class="line">  <span class="built_in">this</span>.job = job</span><br><span class="line">  <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="built_in">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">&#x27;Zaxlct&#x27;</span>, <span class="number">28</span>, <span class="string">&#x27;Software Engineer&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">&#x27;Mick&#x27;</span>, <span class="number">23</span>, <span class="string">&#x27;Doctor&#x27;</span>)</span><br><span class="line">person1.__proto__ == Person.prototype</span><br><span class="line"><span class="comment">//person1.__proto__  = person1.constructor.prototype , person1.constructor = Person</span></span><br><span class="line">Person.__proto__</span><br><span class="line"><span class="comment">//Person.constructor = Function =&gt; Person.__proto__  = Function.prototype</span></span><br><span class="line">Person.prototype.__proto__</span><br><span class="line"><span class="comment">// Person.prototype 是一个普通对象（原型对象），普通函数的构造函数是Object =&gt; Person.prototype.__proto__ =  Object.prototype</span></span><br><span class="line"><span class="built_in">Object</span>.__proto__</span><br><span class="line"><span class="comment">//普通对象 同上</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__</span><br><span class="line"><span class="comment">//对象也有proto属性，但它比较特殊，为null,因为null处于原型链的顶端</span></span><br></pre></td></tr></table></figure>
+
+<p>JS 在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做 <em>proto</em> 的内置属性，<strong>用于指向创建它的构造函数的原型对象</strong> ，原型链继承是通过 <em>proto</em> 这个原型指针来完成的</p>
+<h2 id="原型链图"><a href="#原型链图" class="headerlink" title="原型链图"></a>原型链图</h2><p>褐色的线为原型链 <img src="/images/prototype/2.png" alt="network"></p>
+<p>够造函数、原型和实例的关系：</p>
+<ol>
+<li> 每个构造函数都有一个原型对象（x.prototype)</li>
+<li> 原型对象都包含一个指向构造函数的指针（x.prototype.constructor === x)</li>
+<li> 实例都包含一个指向原型对象的内部指针（a.<em>proto</em> ）</li>
+</ol>
+<p>** 所有函数的默认原型都是 Object 的实例**</p>
+<h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上——MDN</a></p>
+<p>instanceof 表示某个变量是否是某个对象的实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">make, model, year</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.make = make</span><br><span class="line">  <span class="built_in">this</span>.model = model</span><br><span class="line">  <span class="built_in">this</span>.year = year</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> auto = <span class="keyword">new</span> Car(<span class="string">&#x27;Honda&#x27;</span>, <span class="string">&#x27;Accord&#x27;</span>, <span class="number">1998</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(auto <span class="keyword">instanceof</span> Car)</span><br><span class="line"><span class="comment">// expected output: true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(auto <span class="keyword">instanceof</span> <span class="built_in">Object</span>)</span><br><span class="line"><span class="comment">// expected output: true</span></span><br></pre></td></tr></table></figure>
+
+<p>instanceof 可以正确的判断对象类型，因为内部机制是通过对象的原型链中是不是能找到类型的 prototype</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([] <span class="keyword">instanceof</span> Arrage) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Function</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> <span class="keyword">instanceof</span> NUmber) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/prototype/instanceof.image" alt="network"></p>
+<h3 id="null-instanceof-Object-为-false"><a href="#null-instanceof-Object-为-false" class="headerlink" title="null instanceof Object 为 false"></a>null instanceof Object 为 false</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>) <span class="comment">//Object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>这是历史遗留的问题，对于 null 值，typeof null 是出了 BUG，但是本质上 null 和 Object 不是同一个类型，null 值并不是以 Object 为原型创建的，恰恰相反<code>Object.prototype.__proto__ = null</code></p>
+<h3 id="instanceof-的底层实现原理"><a href="#instanceof-的底层实现原理" class="headerlink" title="instanceof 的底层实现原理"></a>instanceof 的底层实现原理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instanceof</span>(<span class="params">l, r</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> o = r.prototype</span><br><span class="line">  l = l._proto_</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (l === Null) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l === o) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    l = l._proto_</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="instanceof-与-constructor-的区别"><a href="#instanceof-与-constructor-的区别" class="headerlink" title="instanceof 与 constructor 的区别"></a>instanceof 与 constructor 的区别</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log((<span class="number">1</span>).constructor === <span class="built_in">Number</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1&#x27;</span>.constructor === <span class="built_in">String</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;.constructor === <span class="built_in">Function</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log([].constructor === <span class="built_in">Array</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125;.constructor === <span class="built_in">Object</span>) <span class="comment">//true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Func</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Func.prototype = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> f = <span class="keyword">new</span> Func()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(f.constructor === <span class="built_in">Function</span>) <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(f.constructor === <span class="built_in">Array</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(f <span class="keyword">instanceof</span> <span class="built_in">Function</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(f <span class="keyword">instanceof</span> <span class="built_in">Array</span>) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call"></a>Object.prototype.toString.call</h2><p>使用 Object 对象的原型方法 toString,返回值是[object 类型]字符串,该方法基本上能判断所有的数据类型.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toString = <span class="built_in">Object</span>.prototype.toString</span><br><span class="line"></span><br><span class="line">toString.call(&#123;&#125;)</span><br><span class="line"><span class="comment">//&quot;[object Object]&quot;</span></span><br><span class="line">toString.call([])</span><br><span class="line"><span class="comment">//&quot;[object Array]&quot;</span></span><br><span class="line">toString.call(<span class="literal">null</span>)</span><br><span class="line"><span class="comment">//&quot;[object Null]&quot;</span></span><br><span class="line">toString.call(<span class="literal">undefined</span>)</span><br><span class="line"><span class="comment">//&quot;[object Undefined]&quot;</span></span><br><span class="line">toString.call(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;)</span><br><span class="line"><span class="comment">//&quot;[object Function]&quot;</span></span><br><span class="line">toString.call(<span class="literal">NaN</span>)</span><br><span class="line"><span class="comment">//&quot;[object Number]&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊的箭头函数"><a href="#特殊的箭头函数" class="headerlink" title="特殊的箭头函数"></a>特殊的箭头函数</h2><p>箭头函数没有自己的 this,arguments,super 或 new.target。箭头函数表达式更实用于那些需要匿名函数的地方，并且它不能用作构造函数，和 new 一起用会抛出错误，箭头函数没有 prototype 属性。</p>
+<p>箭头函数是有<code>-proto-</code>属性的，所以箭头函数本身是存在原型链的，他也是有自己的构造函数的，但是因为没有 prototype 属性，他的实例<code>-proto-</code>没法指向，所以箭头函数也就无法作为构造函数。</p>
+<p>同时箭头函数由于没有 this 指针，通过 call()和 apply 方法调用一个函数时，只能传递参数，不能绑定 this。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&#x27;a&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&#x27;b&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> a() <span class="comment">//TypeError: a is not a constructor</span></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> b()</span><br><span class="line"><span class="keyword">typeof</span> a <span class="comment">//function</span></span><br><span class="line"><span class="built_in">console</span>.log(a.prototype) <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(d._proto_) <span class="comment">//&#123;constructor: ƒ&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(a._proto_) <span class="comment">//ƒ () &#123; [native code] &#125;</span></span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></span><br><span class="line">a instance <span class="keyword">of</span> <span class="built_in">Function</span> <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="文章扩展"><a href="#文章扩展" class="headerlink" title="文章扩展"></a>文章扩展</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangfupeng1988/p/3977924.html">深入理解 javascript 原型和闭包</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;display:none;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <picture><source srcset="/images/wechatpay.webp" type="image/webp"><img loading="lazy" id="wechat_qr" src="/images/wechatpay.png" alt=" 微信扫一扫，向我赞赏"/></picture>
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <picture><source srcset="/images/alipay.webp" type="image/webp"><img loading="lazy" id="alipay_qr" src="/images/alipay.png" alt=" 支付宝扫一扫，向我赞赏"/></picture>
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JS%E5%9F%BA%E7%A1%80-ES5/" rel="next" title="JS基础(ES5)">
+                <i class="fas fa-angle-left"></i> JS基础(ES5)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E4%B8%80%E7%AF%87%E5%BC%84%E6%87%82%E7%BB%A7%E6%89%BF/" rel="prev" title="一篇弄懂继承">
+                一篇弄懂继承 <i class="fas fa-angle-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+                <audio src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/music/langlangqintian.mp3"  controls="controls" style="width:100%;height:35px;"></audio>
+            
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/gihubpage-1.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">卑微的</span>打工仔</p>
+              <p class="site-description motion-element" itemprop="description">瑜者？愉者、愚者</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          <div class="des-of-author">
+              <div class="des-of-author-nav">
+                
+                  
+                    <div class="des-of-author-title active" data-index="1">罗曼·罗兰</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="2">村上春树</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="3">宫崎骏</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="4">道德经</div>
+                  
+                
+              </div>
+              <div class="des-of-author-panel">
+                
+                  
+                    <div class="des-of-author-des active" data-index="1">世界上只有一种真正的英雄主义，就是认清了生活的真相后还依然热爱它。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="2">你要听话，不是所有的鱼都会生活在同一片海里。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="3">即使不舍，也该心存感激，然后挥手道别。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="4">知白守黑 和光同尘</div>
+                  
+                
+              </div>
+          </div>
+
+          <details class="views-top-wrap" style="display:none;">
+            <summary class="views-top-name scaleup">看爆 Top5</summary>
+            <ul class="views-top"></ul>
+          </details>
+
+   
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype-%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-number">3.</span> <span class="nav-text">prototype 属性的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%BC%A0%E5%9B%BE%E8%AF%BB%E6%87%82%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%85%B3%E7%B3%BB"><span class="nav-number">3.1.</span> <span class="nav-text">一张图读懂完整的原型链关系**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4%E3%80%82"><span class="nav-number">3.2.</span> <span class="nav-text">原型链的作用：对象属性的访问修改和删除。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">4.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proto-%EF%BC%88%E5%8E%9F%E5%9E%8B%E6%8C%87%E9%92%88%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">proto （原型指针）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9B%BE"><span class="nav-number">6.</span> <span class="nav-text">原型链图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof"><span class="nav-number">7.</span> <span class="nav-text">instanceof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null-instanceof-Object-%E4%B8%BA-false"><span class="nav-number">7.1.</span> <span class="nav-text">null instanceof Object 为 false</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof-%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">7.2.</span> <span class="nav-text">instanceof 的底层实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof-%E4%B8%8E-constructor-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.3.</span> <span class="nav-text">instanceof 与 constructor 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">8.</span> <span class="nav-text">Object.prototype.toString.call</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">9.</span> <span class="nav-text">特殊的箭头函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%89%A9%E5%B1%95"><span class="nav-number">10.</span> <span class="nav-text">文章扩展</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image">
+
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/footer.png" alt="network">
+      </div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+
+
+<p>© <span itemprop="copyrightYear">2021</span> ColorfulWorld.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.74.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+</p>
+<p>Made with <i class="fas fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">ColorfulWorld</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/images/scroll.png" alt="network">
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.74"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!--<script>
+    // remove service worker cache
+    // from https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
+    "use strict";
+    if(navigator.serviceWorker)
+    {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+  </script>-->
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+</body>
+</html>

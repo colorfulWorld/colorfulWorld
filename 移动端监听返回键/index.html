@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/fonts/Candyshop.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.74" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=0.0.74">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=0.0.74">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.0.74" color="#fff">
+
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+
+  <meta name="keywords" content="colorfulWorld,blog" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ColorfulWorld" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一直以为监听返回按键是 H5 做不到的事情，其实是可以做到的。所以记录一下，深究一下。最近在工作中也接触到这个需求，需要在不同的情况下达到能正常返回或是跳转到其他页面(但是我想这个只能在多页应用实现，单页应用应该是不可以的，没有去尝试过)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端监听返回键">
+<meta property="og:url" content="https://colorfulworld.github.io/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9B%91%E5%90%AC%E8%BF%94%E5%9B%9E%E9%94%AE/index.html">
+<meta property="og:site_name" content="ColorfulWorld">
+<meta property="og:description" content="一直以为监听返回按键是 H5 做不到的事情，其实是可以做到的。所以记录一下，深究一下。最近在工作中也接触到这个需求，需要在不同的情况下达到能正常返回或是跳转到其他页面(但是我想这个只能在多页应用实现，单页应用应该是不可以的，没有去尝试过)。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-12-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-15T15:34:38.003Z">
+<meta property="article:author" content="ColorfulWorld">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.0.74',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '6/21/2016 11:30:00',
+    site: {
+      title: '',
+      subtitle: '',
+      author: ''
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/favicon.ico',
+      hidden: '/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.2/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://colorfulWorld.github.io/移动端监听返回键/"/>
+
+
+
+
+
+  <title>移动端监听返回键 | ColorfulWorld</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fas fa-meteor"></i> <br />
+            
+            首页
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fas fa-archive"></i> <br />
+            
+            归档
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fas fa-calendar"></i> <br />
+            
+            分类
+          </a>
+          
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper">
+  <div class="site-brand-bg">
+    <picture>
+      <img loading="lazy" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/githubpage-bg.jpg">
+    </picture>
+  </div>
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate-stroke" class="animate">
+            <span>
+                  <svg>
+                    <use xlink:href="#strokeC"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokef"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeu"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeW"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroked"></use>
+                  </svg>
+                </span>
+          </div>
+          <div id="animate" class="animate">
+            <span>
+                  <svg>
+                    <text id="strokeC">C</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokef">f</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeu">u</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeW">W</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroked">d</text>
+                  </svg>
+                </span>
+          </div>
+          <div id="guide" class="guide">
+            <span>C</span><span>o</span><span>l</span><span>o</span><span>r</span><span>f</span><span>u</span><span>l</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar scaleup" itemprop="image" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg" alt="network" />
+    <h2 class="site-master-description scaleup" itemprop="description">
+        不负所爱
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">12月</div>
+			<div class="post-day">11</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/JavaScript/" itemprop="url" rel="index">
+          <span itemprop="name">JavaScript</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://colorfulWorld.github.io/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9B%91%E5%90%AC%E8%BF%94%E5%9B%9E%E9%94%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColorfulWorld">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端监听返回键</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-11T00:00:00+08:00">2019-12-11</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="far fa-file-word"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">2524</span>
+              
+
+              
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E8%BF%9B%E3%80%81%E5%90%8E%E9%80%80%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-text">浏览器前进、后退使用机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history-%E4%B8%AD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-text">history 中的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#popstate"><span class="nav-text">popstate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pageshow"><span class="nav-text">pageshow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unload"><span class="nav-text">unload</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%94%E5%9B%9E%E9%94%AE%E7%9B%91%E5%90%AC"><span class="nav-text">实现返回键监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#history-pushState"><span class="nav-text">history.pushState</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#popstate-1"><span class="nav-text">popstate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%80%E8%BF%94%E7%BC%93%E5%AD%98"><span class="nav-text">往返缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A1%AB%E5%9D%91%E5%8F%B2"><span class="nav-text">填坑史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS-%E7%AB%AF-popstate-%E7%9A%84%E6%80%AA%E5%BC%82%E8%A1%8C%E4%B8%BA"><span class="nav-text">IOS 端 popstate 的怪异行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E6%97%B6%E5%8F%8D%E5%A4%8D-pushState"><span class="nav-text">刷新时反复 pushState</span></a></li></ol></li></ol></div>
+      
+      
+
+      
+        <p>一直以为监听返回按键是 H5 做不到的事情，其实是可以做到的。所以记录一下，深究一下。<br>最近在工作中也接触到这个需求，需要在不同的情况下达到能正常返回或是跳转到其他页面(但是我想这个只能在多页应用实现，单页应用应该是不可以的，没有去尝试过)。</p>
+<span id="more"></span>
+
+<h2 id="浏览器前进、后退使用机制"><a href="#浏览器前进、后退使用机制" class="headerlink" title="浏览器前进、后退使用机制"></a>浏览器前进、后退使用机制</h2><p>用户点击浏览器工具栏中的后退按钮，或者是移动设备上的返回键的时候，或者是 JS 执行<code>history.go(-1)</code>的时候，浏览器会在当前窗口“打开”历史记录中的前一个页面。不同的浏览器在“打开”前一个页面的表现并不同意，这和浏览器的实现以及页面本身的设置都有关系。在浏览器中，“后退到前一个页面”意味着：前一个页面的 html/js/css 等等的静态资源的请求（甚至是 ajax 动态接口请求）根本不会重新发送，直接使用缓存的响应，而不管这些静态资源响应的缓存策略是否被设置了禁用状态。</p>
+<h3 id="history-中的操作"><a href="#history-中的操作" class="headerlink" title="history 中的操作"></a>history 中的操作</h3><ol>
+<li> <code>window.history.back()</code>:后退</li>
+<li> <code>window.history.dorward()</code>:前进</li>
+<li> <code>window.history.go(num)</code>:前进或后退指定数量历史记录</li>
+<li><code>window.history.pushState(state,title,url)</code>:在页面中创建一个 histor 实体，直接天剑到历史记录。<ul>
+<li>state:存储一个对象，可以添加相关信息，可以使用 history.state 读取其中的内容。</li>
+<li>title:历史记录的标题。</li>
+<li>url:创建的历史记录的链接，进行历史记录操作时会跳转到改链接。</li>
+</ul>
+</li>
+<li> <code>window.history.replaceState()</code>:修改当前的 history 实体。</li>
+<li> <code>popstate</code>事件:history 实体改变时触发的事件。</li>
+<li> <code>window.history.state</code>:会获得 history 实体中的 state 对象。</li>
+</ol>
+<h3 id="popstate"><a href="#popstate" class="headerlink" title="popstate"></a>popstate</h3><p>popstate 只会在浏览器某些行为下触发，比如点击后退、前进按钮。</p>
+<p>在微信浏览器中，从一个 HTML 跳到另一个 HTML 页面后，点击浏览器返回按钮，或者在第二个页面中调用<code>history.back()</code>等返回上一页的方法，在安卓中会直接返回上一页(相当于重新加载上一页的所有内容，js 会重新执行一遍)，但苹果手机中，范湖上一页是，浏览器会读取缓存中的页面内容，js 不会重新执行，在此进入这个页面不会触发 onload 事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//强制刷新：</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(</span><br><span class="line">  <span class="string">&#x27;popstate&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//检测到用户点击浏览器返回按钮，进行操作</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.referrer)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用href的形式去用跳转的形式，跳转到上一页</span></span><br><span class="line">    <span class="built_in">document</span>.location.href = <span class="built_in">document</span>.referrer</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> state = &#123;</span><br><span class="line">  title: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  url: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.history.pushState(state, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="pageshow"><a href="#pageshow" class="headerlink" title="pageshow"></a>pageshow</h3><p>onpageshow 事件在页面显示时触发，如果页面不在“往返缓存”中，改时间会在 onload 后触发，在 onpageshow 事件中，可以利用 event.persisted</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;pageshow&#x27;</span>.function(evernt)&#123;</span><br><span class="line">    alert(event.persisted);</span><br><span class="line">    <span class="keyword">if</span>(event.persisted) location.reload();<span class="comment">//如果检测到页面是从“往返缓存”中读取的，刷新页面。</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="unload"><a href="#unload" class="headerlink" title="unload"></a>unload</h3><p>指定 unload 事件处理程序的页面会被自动排除在“往返缓存”之外，即使事件处理程序是空白的，原因在于，unload 最长用于撤销 load 中所执行的操作，而跳过 load 后再次显示页面很有可能会导致页面不正常。</p>
+<h2 id="实现返回键监听"><a href="#实现返回键监听" class="headerlink" title="实现返回键监听"></a>实现返回键监听</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pushHistory</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> state = &#123;</span><br><span class="line">    title: <span class="string">&#x27;title&#x27;</span>,</span><br><span class="line">    url: <span class="string">&#x27;#&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">window</span>.history.pushState(state, <span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(</span><br><span class="line">  <span class="string">&#x27;popstate&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//监听到返回时间 执行自己的js</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>这样实现的代码在移动端可以监听浏览器返回按键、物理返回按键、虚拟返回按键、手势返回按键等。<br>history.state 中包含了 state 的 一份拷贝，可以使用 history.state 读取其中的内容。</p>
+<h2 id="history-pushState"><a href="#history-pushState" class="headerlink" title="history.pushState"></a>history.pushState</h2><p>在当前页面创建并激活新的历史记录。</p>
+<p>当调用 history.pushSate 或者是 history.replaceSate()不会触发 popstate 事件。只有做出后退的动作（执行 history.back()、history.go(-1)）时才会执行该事件。另外，该事件只针对同一个文档，如果浏览历史的切换，导致加载不同的文档，该事件也不会触发。</p>
+<p>在百度的控制台输入以下代码：</p>
+<p><code>window.history.pushState(null, null, &quot;https://www.baidu.com/?name=orange&quot;);</code><br>地址显示是<a target="_blank" rel="noopener" href="https://www.baidu.com/name/orange%EF%BC%8C%E6%B3%A8%E6%84%8F%E8%BF%99%E9%87%8C%E7%9A%84url%E6%98%AF%E4%B8%8D%E6%94%AF%E6%8C%81%E8%B7%A8%E5%9F%9F%E7%9A%84%EF%BC%8C%E8%B7%A8%E5%9F%9F%E4%BC%9A%E6%8A%A5%E9%94%99">https://www.baidu.com/name/orange，注意这里的url是不支持跨域的，跨域会报错</a>.</p>
+<p>history.pushState()只会改变当前地址的路径，并不会更新页面内容，只是产生了浏览器历史记录，此时点击返回按钮就返回到本页面，且也没有刷新，而且可以前进到<a target="_blank" rel="noopener" href="https://www.baidu.com/?name=orange">https://www.baidu.com/?name=orange</a> 页面</p>
+<p>当我们在历史记录中切换的时候就会触发 popstate 事件。</p>
+<p>pushSate 三个参数：</p>
+<ul>
+<li>state，状态对象，状态对象 state 是一个 JS 对象，通过 pushSate()创建新的历史记录条目。无论什么时候用户导航到新的状态，popstate 时间就会被触发，且该时间的 state 属性包含该历史记录条目状态对象的副本。</li>
+<li>title，历史记录的标题</li>
+<li>url，创建的历史记录的链接。进行历史记录操作时会跳转到该链接。</li>
+</ul>
+<h2 id="popstate-1"><a href="#popstate-1" class="headerlink" title="popstate"></a>popstate</h2><p>popstate 事件，history 实体(hostory.state)改变时触发的事件。</p>
+<p>当活动的历史条目被更改时，将触发 popstate 事件。如果被激活的历史记录条目是通过对 history.pushState()的调用创建的，或者受到 history.replaceSate()的调用的影响，popstate 的 state 属性包含历史条目的状态的对象的副本——MDN</p>
+<p>popstate 每当活动历史记录在同一个文档的两个历史记录条目之间发生变化时，就会将事件分派到窗口。如果激活的历史记录条目是通过调用 history.pushState()创建的，或者受到 history.replaceState()调用的影响，则该 popstate 事件的 state 属性包含历史记录项的状态对象的副本。</p>
+<p>注意：用于处理 popstate 事件的浏览器在页面加载时的方式不同，但现在它们的行为相同。Firefox 从未在页面加载时发出 popstate 事件，Chrome 直到版本 34 才可以，而 Safari 一直到版本 10.0。</p>
+<h2 id="往返缓存"><a href="#往返缓存" class="headerlink" title="往返缓存"></a>往返缓存</h2><p>默认情况下，浏览器会在当前会话(session)缓存页面，当用户点击“前进”或“后退”按钮时，浏览器就会从缓存中加载页面（除去 meta 中加 no-cache 的情况）。</p>
+<p>浏览器有一个特性叫“往返缓存”(back-forward cache 或 bfcache)，可以在用户使用浏览器的“后退”和“前进”按钮时加快页面的转换速度。这个缓存中不仅保存着页面数据，还保存了 DOM 和 javascript 的状态；实际上是将整个页面都保存在了内存里。如果页面位于 bfcache 中，那么再次打开该页面时就不会触发 load 事件</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>每次返回都会消耗一个 history 实体，若用户选择取消离开，则需要继续 pushSate 一个实体</li>
+<li>pushState 只能一个实体，多个实体返回会报错。使用 window.history.state 查询是否存在添加的实体。</li>
+</ol>
+<p>例如，运行以下代码的<a target="_blank" rel="noopener" href="http://example.com/example.html%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%B0%86%E6%8C%89%E7%85%A7%E6%8C%87%E7%A4%BA%E7%94%9F%E6%88%90%E8%AD%A6%E6%8A%A5%EF%BC%9A">http://example.com/example.html中的页面将按照指示生成警报：</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onpopstate = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  alert(</span><br><span class="line">    <span class="string">&#x27;location: &#x27;</span> + <span class="built_in">document</span>.location + <span class="string">&#x27;, state: &#x27;</span> + <span class="built_in">JSON</span>.stringify(event.state)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">history.pushState(&#123; <span class="attr">page</span>: <span class="number">1</span> &#125;, <span class="string">&#x27;title 1&#x27;</span>, <span class="string">&#x27;?page=1&#x27;</span>)</span><br><span class="line">history.pushState(&#123; <span class="attr">page</span>: <span class="number">2</span> &#125;, <span class="string">&#x27;title 2&#x27;</span>, <span class="string">&#x27;?page=2&#x27;</span>)</span><br><span class="line">history.replaceState(&#123; <span class="attr">page</span>: <span class="number">3</span> &#125;, <span class="string">&#x27;title 3&#x27;</span>, <span class="string">&#x27;?page=3&#x27;</span>)</span><br><span class="line">history.back() <span class="comment">// alerts &quot;location: http://example.com/example.html?page=1, state: &#123;&quot;page&quot;:1&#125;&quot;</span></span><br><span class="line">history.back() <span class="comment">// alerts &quot;location: http://example.com/example.html, state: null history.go(2);</span></span><br><span class="line"><span class="comment">// alerts &quot;location: http://example.com/example.html?page=3, state: &#123;&quot;page&quot;:3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>请注意，即使原始历史记录项（for <a target="_blank" rel="noopener" href="http://example.com/example.html%EF%BC%89%E6%B2%A1%E6%9C%89%E4%B8%8E%E5%85%B6%E5%85%B3%E8%81%94%E7%9A%84%E7%8A%B6%E6%80%81%E5%AF%B9%E8%B1%A1%EF%BC%8C%E4%BD%86%E5%BD%93%E6%88%91%E4%BB%AC%E5%9C%A8%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%B0%83%E7%94%A8history.back()%E5%90%8E%E6%BF%80%E6%B4%BB%E8%AF%A5%E7%8E%B0%E6%97%B6%EF%BC%8C%E4%BB%8D%E7%84%B6%E4%BC%9A%E8%A7%A6%E5%8F%91%E4%B8%80%E4%B8%AApopstate%E4%BA%8B%E4%BB%B6%E3%80%82">http://example.com/example.html）没有与其关联的状态对象，但当我们在第二次调用history.back()后激活该现时，仍然会触发一个popstate事件。</a></p>
+<h2 id="填坑史"><a href="#填坑史" class="headerlink" title="填坑史"></a>填坑史</h2><p>这种东西一看就不靠谱，一用果然不靠谱，在移动端兼容好像还可以，目前没有发现在什么低端手机上完全不支持的。</p>
+<p>需求是根据不同的情况来跳转，但是若是由接口返回参数进行判断的话则有可能用户在接口还没有反应的时候就进行了跳转，因此是使用的判断 cookies 的方式执行的 js。</p>
+<p>业务场景：</p>
+<p>页面 A-&gt;B-&gt;C，C 返回至 B 时页面返回时需要返回到指定的其他页面，比如跳到百度。</p>
+<h3 id="IOS-端-popstate-的怪异行为"><a href="#IOS-端-popstate-的怪异行为" class="headerlink" title="IOS 端 popstate 的怪异行为"></a>IOS 端 popstate 的怪异行为</h3><p>由于 ios 的性能在缓存页面比较好，所以一般页面的后退都会保存之前的历史页面，不会触发页面上的 js 等，所以可以触发到 popstate 事件，而 webkit 的某些版本对 popstate 的理解与官方标准不一致，导致每次访问页面都会同步为访问了这个页面的历史纪录，所以 popstate 就被触发了。</p>
+<p>问题：在 ios 上，页面 C 返回时，立即执行了 popstate 事件，导致直接跳转到百度了。</p>
+<p>解决方法：通过 pageshow 事件处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bool = <span class="literal">false</span> <span class="comment">//定义一个变量</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;pageshow&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  bool = <span class="literal">false</span> <span class="comment">//进入页面时bool置为false，防止ios立即执行popstate</span></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//定时器延迟将bool置为true</span></span><br><span class="line">    bool = <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="number">500</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">pushHistory()</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(</span><br><span class="line">  <span class="string">&#x27;popstate&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (bool) &#123;</span><br><span class="line">      <span class="built_in">window</span>.location.href = <span class="string">&#x27;http://www.baidu.com&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pushHistory</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> state = &#123; <span class="attr">title</span>: <span class="string">&#x27;title&#x27;</span>, <span class="attr">url</span>: <span class="string">&#x27;#&#x27;</span> &#125;</span><br><span class="line">  <span class="built_in">window</span>.history.pushState(state, <span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="刷新时反复-pushState"><a href="#刷新时反复-pushState" class="headerlink" title="刷新时反复 pushState"></a>刷新时反复 pushState</h3><p>因为刷新时重复 pushState，所以跳转到 baidu.com 时无法正常返回。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!history.state || history.state.url !== <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">  <span class="comment">//避免刷新是反复pushSate</span></span><br><span class="line">  pushHistory()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!history.state || history.state.url !== <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">  <span class="comment">//避免刷新是反复pushSate</span></span><br><span class="line">  pushHistory()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>感觉就是很不靠谱，所以使用的时候慎重加多测。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;display:none;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <picture><source srcset="/images/wechatpay.webp" type="image/webp"><img loading="lazy" id="wechat_qr" src="/images/wechatpay.png" alt=" 微信扫一扫，向我赞赏"/></picture>
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <picture><source srcset="/images/alipay.webp" type="image/webp"><img loading="lazy" id="alipay_qr" src="/images/alipay.png" alt=" 支付宝扫一扫，向我赞赏"/></picture>
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Jenkins%E5%AF%B9%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E5%81%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="next" title="Jenkins对前端应用做自动化构建">
+                <i class="fas fa-angle-left"></i> Jenkins对前端应用做自动化构建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/keep-alive%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="prev" title="keep-alive小知识">
+                keep-alive小知识 <i class="fas fa-angle-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+                <audio src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/music/langlangqintian.mp3"  controls="controls" style="width:100%;height:35px;"></audio>
+            
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/gihubpage-1.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">卑微的</span>打工仔</p>
+              <p class="site-description motion-element" itemprop="description">瑜者？愉者、愚者</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          <div class="des-of-author">
+              <div class="des-of-author-nav">
+                
+                  
+                    <div class="des-of-author-title active" data-index="1">罗曼·罗兰</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="2">村上春树</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="3">宫崎骏</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="4">道德经</div>
+                  
+                
+              </div>
+              <div class="des-of-author-panel">
+                
+                  
+                    <div class="des-of-author-des active" data-index="1">世界上只有一种真正的英雄主义，就是认清了生活的真相后还依然热爱它。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="2">你要听话，不是所有的鱼都会生活在同一片海里。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="3">即使不舍，也该心存感激，然后挥手道别。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="4">知白守黑 和光同尘</div>
+                  
+                
+              </div>
+          </div>
+
+          <details class="views-top-wrap" style="display:none;">
+            <summary class="views-top-name scaleup">看爆 Top5</summary>
+            <ul class="views-top"></ul>
+          </details>
+
+   
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E8%BF%9B%E3%80%81%E5%90%8E%E9%80%80%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">浏览器前进、后退使用机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history-%E4%B8%AD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">history 中的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#popstate"><span class="nav-number">1.2.</span> <span class="nav-text">popstate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pageshow"><span class="nav-number">1.3.</span> <span class="nav-text">pageshow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unload"><span class="nav-number">1.4.</span> <span class="nav-text">unload</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%94%E5%9B%9E%E9%94%AE%E7%9B%91%E5%90%AC"><span class="nav-number">2.</span> <span class="nav-text">实现返回键监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#history-pushState"><span class="nav-number">3.</span> <span class="nav-text">history.pushState</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#popstate-1"><span class="nav-number">4.</span> <span class="nav-text">popstate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%80%E8%BF%94%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">往返缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">6.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A1%AB%E5%9D%91%E5%8F%B2"><span class="nav-number">7.</span> <span class="nav-text">填坑史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS-%E7%AB%AF-popstate-%E7%9A%84%E6%80%AA%E5%BC%82%E8%A1%8C%E4%B8%BA"><span class="nav-number">7.1.</span> <span class="nav-text">IOS 端 popstate 的怪异行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E6%97%B6%E5%8F%8D%E5%A4%8D-pushState"><span class="nav-number">7.2.</span> <span class="nav-text">刷新时反复 pushState</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image">
+
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/footer.png" alt="network">
+      </div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+
+
+<p>© <span itemprop="copyrightYear">2021</span> ColorfulWorld.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.74.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+</p>
+<p>Made with <i class="fas fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">ColorfulWorld</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/images/scroll.png" alt="network">
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.74"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!--<script>
+    // remove service worker cache
+    // from https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
+    "use strict";
+    if(navigator.serviceWorker)
+    {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+  </script>-->
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+</body>
+</html>

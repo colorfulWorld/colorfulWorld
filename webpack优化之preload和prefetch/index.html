@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/fonts/Candyshop.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.74" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=0.0.74">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=0.0.74">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.0.74" color="#fff">
+
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+
+  <meta name="keywords" content="colorfulWorld,blog" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ColorfulWorld" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="链接预取是一种浏览器机制，其利用浏览器空闲时间来下载或预取用户在不久的将来可能访问的文档。网页向浏览器提供一组预取提示，并在浏览器完成当前页面的加载后开始静默地拉取指定的文档并将其存储在缓存中。当用户访问其中一个预取文档时，便可以快速的从浏览器缓存中得到。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack优化之preload和prefetch">
+<meta property="og:url" content="https://colorfulworld.github.io/webpack%E4%BC%98%E5%8C%96%E4%B9%8Bpreload%E5%92%8Cprefetch/index.html">
+<meta property="og:site_name" content="ColorfulWorld">
+<meta property="og:description" content="链接预取是一种浏览器机制，其利用浏览器空闲时间来下载或预取用户在不久的将来可能访问的文档。网页向浏览器提供一组预取提示，并在浏览器完成当前页面的加载后开始静默地拉取指定的文档并将其存储在缓存中。当用户访问其中一个预取文档时，便可以快速的从浏览器缓存中得到。">
+<meta property="og:locale">
+<meta property="og:image" content="https://img.hacpai.com/file/2019/08/15659449621-5fea8870.jpg">
+<meta property="article:published_time" content="2019-08-16T09:26:11.000Z">
+<meta property="article:modified_time" content="2021-04-03T03:29:17.968Z">
+<meta property="article:author" content="ColorfulWorld">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.hacpai.com/file/2019/08/15659449621-5fea8870.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.0.74',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '6/21/2016 11:30:00',
+    site: {
+      title: '',
+      subtitle: '',
+      author: ''
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/favicon.ico',
+      hidden: '/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.2/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://colorfulWorld.github.io/webpack优化之preload和prefetch/"/>
+
+
+
+
+
+  <title>webpack优化之preload和prefetch | ColorfulWorld</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fas fa-meteor"></i> <br />
+            
+            首页
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fas fa-archive"></i> <br />
+            
+            归档
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fas fa-calendar"></i> <br />
+            
+            分类
+          </a>
+          
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper">
+  <div class="site-brand-bg">
+    <picture>
+      <img loading="lazy" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/githubpage-bg.jpg">
+    </picture>
+  </div>
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate-stroke" class="animate">
+            <span>
+                  <svg>
+                    <use xlink:href="#strokeC"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokef"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeu"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeW"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroked"></use>
+                  </svg>
+                </span>
+          </div>
+          <div id="animate" class="animate">
+            <span>
+                  <svg>
+                    <text id="strokeC">C</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokef">f</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeu">u</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeW">W</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroked">d</text>
+                  </svg>
+                </span>
+          </div>
+          <div id="guide" class="guide">
+            <span>C</span><span>o</span><span>l</span><span>o</span><span>r</span><span>f</span><span>u</span><span>l</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar scaleup" itemprop="image" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg" alt="network" />
+    <h2 class="site-master-description scaleup" itemprop="description">
+        不负所爱
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">08月</div>
+			<div class="post-day">16</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/webpack/" itemprop="url" rel="index">
+          <span itemprop="name">webpack</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://colorfulWorld.github.io/webpack%E4%BC%98%E5%8C%96%E4%B9%8Bpreload%E5%92%8Cprefetch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColorfulWorld">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack优化之preload和prefetch</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-16T17:26:11+08:00">2019-08-16</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="far fa-file-word"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">1532</span>
+              
+
+              
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#prefetch"><span class="nav-text">prefetch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#preload"><span class="nav-text">preload</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8-preload-%E5%92%8C-prefetch"><span class="nav-text">什么时候使用 preload 和 prefetch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#preload-%E5%92%8C-prefetch-%E7%9A%84%E7%BC%93%E5%AD%98%E8%A1%8C%E4%B8%BA"><span class="nav-text">preload 和  prefetch  的缓存行为</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack-%E6%90%AD%E9%85%8D-prefetch-%E4%BC%98%E5%8C%96%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8-code-splitting"><span class="nav-text">webpack 搭配 prefetch 优化单页面应用 code-splitting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E6%9C%89%E4%B8%A4%E4%B8%AA%E5%85%B3%E9%94%AE%E7%82%B9%EF%BC%9A"><span class="nav-text">这里有两个关键点：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">参考文献</span></a></li></ol></div>
+      
+      
+
+      
+        <p>链接预取是一种浏览器机制，其利用浏览器空闲时间来下载或预取用户在不久的将来可能访问的文档。网页向浏览器提供一组预取提示，并在浏览器完成当前页面的加载后开始静默地拉取指定的文档并将其存储在缓存中。当用户访问其中一个预取文档时，便可以快速的从浏览器缓存中得到。</p>
+<span id="more"></span>
+
+<h1 id="prefetch"><a href="#prefetch" class="headerlink" title="prefetch"></a>prefetch</h1><p>prefetch 的设计初衷是为了让当前页面的关键资源尽早被发现和加载，从而提升首屏渲染性能。</p>
+<p>当我们使用 webpack 构建页面时，就会在页面中发现有很多使用<code>link</code>引入的 JS 资源。</p>
+<p><img src="https://img.hacpai.com/file/2019/08/15659449621-5fea8870.jpg" alt="network"></p>
+<p>这段代码告诉浏览器，这段资源将会在未来某个导航或者功能要用到，但是本资源的下载顺序权重比较低。也就是说 prefetch 通常用于加速下一次导航，而不是本次的。</p>
+<p>被标记为 prefetch 的资源，将会被浏览器在空闲时间加载。prefetch 指示的是<strong>下一次</strong>导航可能需要的资源。浏览器识别到 Prefetch 时，应该加载该资源（且不执行），等到真正请求相同资源时，就能够得到更快的响应。</p>
+<p>![network]](<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Link_prefetching_FAQ">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Link_prefetching_FAQ</a>)</p>
+<h1 id="preload"><a href="#preload" class="headerlink" title="preload"></a>preload</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;late_discovered_thing.js&quot; as&#x3D;&quot;script&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>as 属性的作用是告诉浏览器被加载的是什么资源，可能的 as 值包括：</p>
+<ul>
+<li>  “script”</li>
+<li>  “style”</li>
+<li>  “image”</li>
+<li>  “media”</li>
+<li>  “document”</li>
+</ul>
+<p>忽略 as 属性，或者错误的 as 属性会使 preload 等同于 XHR 请求，浏览器不知道加载的是什么，因此会赋予此类资源非常低的加载优先级。</p>
+<p>preload 通常用于本页面要用到的关键资源，包括关键 js、字体、css 文件。preload 将会把资源得下载顺序权重提高，使得关键数据提前下载好，优化页面打开速度。</p>
+<h1 id="什么时候使用-preload-和-prefetch"><a href="#什么时候使用-preload-和-prefetch" class="headerlink" title="什么时候使用 preload 和 prefetch"></a>什么时候使用 preload 和 prefetch</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于当前页面很有必要的资源使用 &#96;preload&#96;，对于可能在将来的页面中使用的资源使用 &#96;prefetch&#96;。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>  <code>preload</code>  是对浏览器指示预先请求当前页需要的资源（关键的脚本，字体，主要图片）。</p>
+</li>
+<li><p>  <code>prefetch</code>  应用场景稍微又些不同 —— 用户将来可能在其他部分（比如视图或页面）使用到的资源。如果  <code>A</code>  页面发起一个  <code>B</code>  页面的  <code>prefetch</code>  请求，这个资源获取过程和导航请求可能是同步进行的，而如果我们用  <code>preload</code>  的话，页面  <code>A</code>  离开时它会立即停止。</p>
+</li>
+</ul>
+<p>使用  <code>preload</code>和  <code>prefetch</code>，我们有了对当前页面和将来页面加载关键资源的解决办法。</p>
+<h1 id="preload-和-prefetch-的缓存行为"><a href="#preload-和-prefetch-的缓存行为" class="headerlink" title="preload 和  prefetch  的缓存行为"></a>preload 和  prefetch  的缓存行为</h1><p>chrome 有四种缓存：HTTP 缓存，内存缓存，Service Worker 缓存和 Push 缓存，preload 和 prefetch 都被缓存在 HTTP 缓存中。</p>
+<p>当一个资源被  <code>preload</code>  或者  <code>prefetch</code>  获取后，它可以从 HTTP 缓存移动至渲染器的内存缓存中。如果资源可以被缓存（比如说存在有效的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control"><code>cache-control</code></a>  和  <code>max-age</code>），它被存储在 HTTP 缓存中可以被现在或将来的任务使用，如果资源不能被缓存在 HTTP 缓存中，作为代替，它被放在内存缓存中直到被使用。</p>
+<h1 id="webpack-搭配-prefetch-优化单页面应用-code-splitting"><a href="#webpack-搭配-prefetch-优化单页面应用-code-splitting" class="headerlink" title="webpack 搭配 prefetch 优化单页面应用 code-splitting"></a>webpack 搭配 prefetch 优化单页面应用 code-splitting</h1><p>单页面应用由于页面过多，可能会导致代码体积过大，从而使得首页打开速度过慢。所以切分代码，优化首屏打开速度尤为重要。</p>
+<p>但是所有的技术手段都不是完美的。当我们切割代码后，首屏的 js 文件体积减少了好多。但是也有一个突出的问题：<br>那就是当跳转其他页面的时候，需要下载相应页面的 js 文件，这就导致体验极其不好，每一次点击访问新页面都要等待 js 文件下载，然后再去请求接口获取数据。频繁出现 loading 动画的体验真的不好.</p>
+<p>所以如果我们在进入首页后，在浏览器的空闲时间提前下好用户可能会点击页面的 js 文件，这样首屏的 js 文件大小得到了控制，而且再点击新页面的时候，相关的 js 文件已经下载好了，就不再会出现 loading 动画。</p>
+<p>动态引入 js 文件，实现 code-splitting，减少首屏打开时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">**<span class="comment">// 代码分割后的react组件</span></span><br><span class="line"><span class="keyword">const</span> Brand = asyncComponent(<span class="function">() =&gt;</span> <span class="keyword">import</span>(</span><br><span class="line"><span class="comment">/*webpackChunkName: &#x27;mp-supports&#x27;*/</span></span><br><span class="line"><span class="string">&#x27;./views/Brand&#x27;</span> )) <span class="comment">// 路由引入</span></span><br><span class="line">&lt;Route path=<span class="string">&quot;/&quot;</span> component=&#123;App&#125;&gt;</span><br><span class="line">&lt;Route path=<span class="string">&quot;/brand&quot;</span> component=&#123;Brand&#125; /&gt; &lt;/Route&gt;</span><br></pre></td></tr></table></figure>
+
+<p>首页组件的生命周期：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在接口取的数据后，进行prefetch</span></span><br><span class="line"><span class="function"><span class="title">componentDidUpdate</span>(<span class="params">&#123; topics &#125;</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>( topics.length === <span class="number">0</span> &amp;&amp; <span class="built_in">this</span>.props.topics.length &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">   <span class="comment">// 实行prefetch，注意只有webpack 4版本才支持prefetch功能。</span></span><br><span class="line">    <span class="keyword">import</span>(</span><br><span class="line">        <span class="comment">/* webpackPrefetch: true */</span></span><br><span class="line">        <span class="comment">/*webpackChunkName: &#x27;topic&#x27;*/</span></span><br><span class="line">        <span class="string">&quot;../topic&quot;</span></span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关键点：<br>1、 <code>_webpackChunkName: &#39;chunk-name&#39;_</code><br>2、 componentDidUpdate</p>
+<h2 id="这里有两个关键点："><a href="#这里有两个关键点：" class="headerlink" title="这里有两个关键点："></a>这里有两个关键点：</h2><ol>
+<li>webpack 的动态 import()需要指定包命，如果不在注释中说明包名，那么用了几次 import() , webpack 就会给同一个文件打包多少次。使得我们 prefetch 的文件和路由中要用到的文件并不是同一个文件。</li>
+<li>prefetch 会在浏览器空闲时，下载相应文件。这是一个很笼统的定义，在我的使用中，我发现在接口没有返回数据，以及图片等还没有请求成功时，prefetch 就会请求数据了。这一点是很不好的，最起码 prefetch 不能影响首页接口的获取速度。所以我把 prefetch 的执行事件放在了 componentDidUpdate 生命周期内。保障了 prefetch 的执行，不会影响到关键的首页数据获取。</li>
+</ol>
+<p>当然 prefetch 在服务端渲染的页面并不会有影响接口的问题，是一个比较好的技术选择</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.itcodemonkey.com/article/9707.html">Prefetch 和预加载实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/24ffa6d45087">关于 Preload, 你应该知道些什么</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3cplus.com/performance/reloading/preload-prefetch-and-priorities-in-chrome.html">Preload，Prefetch 和它们在 Chrome 之中的优先级)</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;display:none;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <picture><source srcset="/images/wechatpay.webp" type="image/webp"><img loading="lazy" id="wechat_qr" src="/images/wechatpay.png" alt=" 微信扫一扫，向我赞赏"/></picture>
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <picture><source srcset="/images/alipay.webp" type="image/webp"><img loading="lazy" id="alipay_qr" src="/images/alipay.png" alt=" 支付宝扫一扫，向我赞赏"/></picture>
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="正则表达式">
+                <i class="fas fa-angle-left"></i> 正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JS%E7%9A%84number%E7%B1%BB%E5%9E%8B%E6%9C%80%E5%A4%A7%E5%80%BC/" rel="prev" title="JS的number类型最大值">
+                JS的number类型最大值 <i class="fas fa-angle-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+                <audio src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/music/langlangqintian.mp3"  controls="controls" style="width:100%;height:35px;"></audio>
+            
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/gihubpage-1.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">卑微的</span>打工仔</p>
+              <p class="site-description motion-element" itemprop="description">瑜者？愉者、愚者</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          <div class="des-of-author">
+              <div class="des-of-author-nav">
+                
+                  
+                    <div class="des-of-author-title active" data-index="1">罗曼·罗兰</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="2">村上春树</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="3">宫崎骏</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="4">道德经</div>
+                  
+                
+              </div>
+              <div class="des-of-author-panel">
+                
+                  
+                    <div class="des-of-author-des active" data-index="1">世界上只有一种真正的英雄主义，就是认清了生活的真相后还依然热爱它。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="2">你要听话，不是所有的鱼都会生活在同一片海里。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="3">即使不舍，也该心存感激，然后挥手道别。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="4">知白守黑 和光同尘</div>
+                  
+                
+              </div>
+          </div>
+
+          <details class="views-top-wrap" style="display:none;">
+            <summary class="views-top-name scaleup">看爆 Top5</summary>
+            <ul class="views-top"></ul>
+          </details>
+
+   
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#prefetch"><span class="nav-number">1.</span> <span class="nav-text">prefetch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#preload"><span class="nav-number">2.</span> <span class="nav-text">preload</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8-preload-%E5%92%8C-prefetch"><span class="nav-number">3.</span> <span class="nav-text">什么时候使用 preload 和 prefetch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#preload-%E5%92%8C-prefetch-%E7%9A%84%E7%BC%93%E5%AD%98%E8%A1%8C%E4%B8%BA"><span class="nav-number">4.</span> <span class="nav-text">preload 和  prefetch  的缓存行为</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack-%E6%90%AD%E9%85%8D-prefetch-%E4%BC%98%E5%8C%96%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8-code-splitting"><span class="nav-number">5.</span> <span class="nav-text">webpack 搭配 prefetch 优化单页面应用 code-splitting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E6%9C%89%E4%B8%A4%E4%B8%AA%E5%85%B3%E9%94%AE%E7%82%B9%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">这里有两个关键点：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image">
+
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/footer.png" alt="network">
+      </div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+
+
+<p>© <span itemprop="copyrightYear">2021</span> ColorfulWorld.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.74.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+</p>
+<p>Made with <i class="fas fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">ColorfulWorld</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/images/scroll.png" alt="network">
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.74"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!--<script>
+    // remove service worker cache
+    // from https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
+    "use strict";
+    if(navigator.serviceWorker)
+    {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+  </script>-->
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+</body>
+</html>

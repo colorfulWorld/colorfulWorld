@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/fonts/Candyshop.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.74" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=0.0.74">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=0.0.74">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.0.74" color="#fff">
+
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+
+  <meta name="keywords" content="colorfulWorld,blog" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ColorfulWorld" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="记录一些零碎的知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识点积累">
+<meta property="og:url" content="https://colorfulworld.github.io/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF/index.html">
+<meta property="og:site_name" content="ColorfulWorld">
+<meta property="og:description" content="记录一些零碎的知识点">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-03-08T10:21:15.000Z">
+<meta property="article:modified_time" content="2021-05-06T12:22:09.897Z">
+<meta property="article:author" content="ColorfulWorld">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.0.74',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '6/21/2016 11:30:00',
+    site: {
+      title: '',
+      subtitle: '',
+      author: ''
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/favicon.ico',
+      hidden: '/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.2/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://colorfulWorld.github.io/小知识点积累/"/>
+
+
+
+
+
+  <title>知识点积累 | ColorfulWorld</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fas fa-meteor"></i> <br />
+            
+            首页
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fas fa-archive"></i> <br />
+            
+            归档
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fas fa-calendar"></i> <br />
+            
+            分类
+          </a>
+          
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper">
+  <div class="site-brand-bg">
+    <picture>
+      <img loading="lazy" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/githubpage-bg.jpg">
+    </picture>
+  </div>
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate-stroke" class="animate">
+            <span>
+                  <svg>
+                    <use xlink:href="#strokeC"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokef"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeu"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeW"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroked"></use>
+                  </svg>
+                </span>
+          </div>
+          <div id="animate" class="animate">
+            <span>
+                  <svg>
+                    <text id="strokeC">C</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokef">f</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeu">u</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeW">W</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroked">d</text>
+                  </svg>
+                </span>
+          </div>
+          <div id="guide" class="guide">
+            <span>C</span><span>o</span><span>l</span><span>o</span><span>r</span><span>f</span><span>u</span><span>l</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar scaleup" itemprop="image" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg" alt="network" />
+    <h2 class="site-master-description scaleup" itemprop="description">
+        不负所爱
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">03月</div>
+			<div class="post-day">08</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/Web/" itemprop="url" rel="index">
+          <span itemprop="name">Web</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://colorfulWorld.github.io/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColorfulWorld">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">知识点积累</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T18:21:15+08:00">2018-03-08</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="far fa-file-word"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">2267</span>
+              
+
+              
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A0%B7%E5%BC%8F%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%AD%90%E5%85%83%E7%B4%A0%E7%BB%A7%E6%89%BF"><span class="nav-text">CSS 有哪些样式可以给子元素继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#box-sizing-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%B1%9E%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B-%E5%88%86%E5%88%AB%E6%9C%89%E5%95%A5%E4%BD%9C%E7%94%A8"><span class="nav-text">box-sizing 常用的属性有哪些? 分别有啥作用?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E6%A0%B7%E5%BC%8F%E6%9D%83%E9%87%8D%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">说说样式权重的优先级;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E7%BB%84-%E2%80%982018-03-05%E2%80%99-%E2%80%982013-06-12%E2%80%99-%E2%80%992019-03-12%E2%80%99-%E2%80%992018-03-05%E2%80%99-%E2%80%992014-02-22%E2%80%99-%E5%8E%BB%E9%87%8D%E4%B8%94%E6%8E%92%E5%BA%8F"><span class="nav-text">对数组 [‘2018-03-05’, ‘2013-06-12’,’2019-03-12’,’2018-03-05’,’2014-02-22’] 去重且排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E7%BB%84-1-2-3-4-5-%E2%80%996%E2%80%99-7-%E2%80%998%E2%80%99-%E2%80%99a%E2%80%99-%E2%80%99b%E2%80%99-%E2%80%99z%E2%80%99-%E8%BF%9B%E8%A1%8C%E4%B9%B1%E5%BA%8F"><span class="nav-text">对数组[1,2,3,4,5,’6’,7,’8’,’a’,’b’,’z’]进行乱序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82-1-10-11-1-%E2%80%99-5%E2%80%99-12-13-14-15-2-3-4-7-8-9-%E5%86%85%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E5%B7%AE"><span class="nav-text">求[1, 10, 11, -1,’-5’,12, 13, 14, 15, 2, 3, 4, 7, 8, 9]内最大值与最小值之差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88-%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E5%88%AB%E4%B9%8B%E5%A4%84%E4%B9%88"><span class="nav-text">JS 的作用域是什么?有什么特别之处么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="nav-text">作用域链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript-%E9%87%8C%E9%9D%A2%E7%9A%84%E7%BB%A7%E6%89%BF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%EF%BC%8C%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB"><span class="nav-text">javascript 里面的继承怎么实现，如何避免原型链上面的对象共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%94%E7%BB%99%E6%AF%8F%E6%9D%A1%E5%86%85%E5%AE%B9%E6%B7%BB%E5%8A%A0%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="nav-text">渲染海量数据且给每条内容添加监听事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-%E4%B8%AD-watch-%E5%92%8C%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">vue 中 watch 和计算属性的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%9A%E5%B8%B8%E5%9C%A8%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E4%B9%B0%E7%82%B9%E8%AF%B7%E6%B1%82%E7%9A%84%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%AF-1-1-%E5%83%8F%E7%B4%A0%E7%9A%84%E9%80%8F%E6%98%8E-gif-%E5%9B%BE%E7%89%87%E3%80%82"><span class="nav-text">为什么通常在发送数据买点请求的时候使用的是 1*1 像素的透明 gif 图片。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-%E6%90%9C%E7%B4%A2%E5%A6%82%E4%BD%95%E9%98%B2%E6%8A%96%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5"><span class="nav-text">input 搜索如何防抖，如何处理中文输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-%E9%A2%84%E8%A7%A3%E6%9E%90"><span class="nav-text">DNS 预解析</span></a></li></ol></div>
+      
+      
+
+      
+        <p>记录一些零碎的知识点</p>
+<span id="more"></span>
+
+<h2 id="CSS-有哪些样式可以给子元素继承"><a href="#CSS-有哪些样式可以给子元素继承" class="headerlink" title="CSS 有哪些样式可以给子元素继承"></a>CSS 有哪些样式可以给子元素继承</h2><ul>
+<li>可继承的:<code>font-size</code>,<code>font-weight</code>,<code>line-height</code>,<code>color</code>,<code>cursor</code> 等 。</li>
+<li>不可继承的一般是会改变盒子模型的:<code>display</code>,<code>margin</code>、<code>border</code>、<code>padding</code>、<code>height</code> 等。</li>
+</ul>
+<h2 id="box-sizing-常用的属性有哪些-分别有啥作用"><a href="#box-sizing-常用的属性有哪些-分别有啥作用" class="headerlink" title="box-sizing 常用的属性有哪些? 分别有啥作用?"></a>box-sizing 常用的属性有哪些? 分别有啥作用?</h2><p>这个 css 主要是改变盒子模型的大小。有两个值:<code>content-box</code>(标准模型),<code>border-box</code>（怪异模型）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  .test &#123;</span><br><span class="line"><span class="css">    <span class="attribute">box-sizing</span>: content-box;</span></span><br><span class="line"><span class="css">    <span class="attribute">border</span>: <span class="number">5px</span> solid <span class="number">#f00</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">content-box的计算公式会把宽高的定义指向 content,border和 padding 另外计算,</span></span><br><span class="line"><span class="comment">也就是说 content + padding + border = 120px(盒子实际大小)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">而border-box的计算公式是总的大小涵盖这三者, content 会缩小,来让给另外两者</span></span><br><span class="line"><span class="comment">content(80px) + padding(5*2px) + border(5*2px) = 100px</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="说说样式权重的优先级"><a href="#说说样式权重的优先级" class="headerlink" title="说说样式权重的优先级;"></a>说说样式权重的优先级;</h2><p><code>!important</code> &gt; <code>行内样式</code> &gt; <code>id</code> &gt; <code>class</code> &gt; <code>tag</code></p>
+<h2 id="对数组-‘2018-03-05’-‘2013-06-12’-’2019-03-12’-’2018-03-05’-’2014-02-22’-去重且排序"><a href="#对数组-‘2018-03-05’-‘2013-06-12’-’2019-03-12’-’2018-03-05’-’2014-02-22’-去重且排序" class="headerlink" title="对数组 [‘2018-03-05’, ‘2013-06-12’,’2019-03-12’,’2018-03-05’,’2014-02-22’] 去重且排序"></a>对数组 [‘2018-03-05’, ‘2013-06-12’,’2019-03-12’,’2018-03-05’,’2014-02-22’] 去重且排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//很好理解, Set 具有值唯一性(但不是所有值,等会我抛出我的另外一篇文章)</span></span><br><span class="line"><span class="comment">// 结合...解构,可以把可迭代(比如 arguments/nodelist 等)的转为数组</span></span><br><span class="line"><span class="comment">// sort 里面传入 两个值比较,返回-1和1是因为1代表这个数大排后(相对),-1代表小(相对),0为相等</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [</span><br><span class="line">  ...new <span class="built_in">Set</span>([</span><br><span class="line">    <span class="string">&#x27;2018-03-05&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2013-06-12&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2019-03-12&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2018-03-05&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2014-02-22&#x27;</span></span><br><span class="line">  ])</span><br><span class="line">].sort(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? -<span class="number">1</span> : <span class="number">1</span> <span class="comment">// 这里返回的是升序的,降序改下返回值就好了.所以是相对</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// [&quot;2013-06-12&quot;, &quot;2014-02-22&quot;, &quot;2018-03-05&quot;, &quot;2019-03-12&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="对数组-1-2-3-4-5-’6’-7-’8’-’a’-’b’-’z’-进行乱序"><a href="#对数组-1-2-3-4-5-’6’-7-’8’-’a’-’b’-’z’-进行乱序" class="headerlink" title="对数组[1,2,3,4,5,’6’,7,’8’,’a’,’b’,’z’]进行乱序"></a>对数组[1,2,3,4,5,’6’,7,’8’,’a’,’b’,’z’]进行乱序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 我们依旧可以用上面的 sort 的原理实现乱序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> tempArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="string">&#x27;6&#x27;</span>, <span class="number">7</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;z&#x27;</span>].sort(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random() &gt; <span class="number">0.5</span> ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为里面有随机数,所以答案没有标准答案,我这边跑了一次是输出这个</span></span><br><span class="line"><span class="comment">//[&quot;6&quot;, &quot;z&quot;, 3, &quot;b&quot;, 5, 2, 7, &quot;8&quot;, &quot;a&quot;, 1, 4]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="求-1-10-11-1-’-5’-12-13-14-15-2-3-4-7-8-9-内最大值与最小值之差"><a href="#求-1-10-11-1-’-5’-12-13-14-15-2-3-4-7-8-9-内最大值与最小值之差" class="headerlink" title="求[1, 10, 11, -1,’-5’,12, 13, 14, 15, 2, 3, 4, 7, 8, 9]内最大值与最小值之差"></a>求[1, 10, 11, -1,’-5’,12, 13, 14, 15, 2, 3, 4, 7, 8, 9]内最大值与最小值之差</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 来一个很粗糙的版本,只当传入是数组且可以隐性转为数字的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MaxMinPlus</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 返回最大值与最小值之差</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(arr)</span><br><span class="line">    ? <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, arr) - <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, arr)</span><br><span class="line">    : <span class="built_in">console</span>.log(<span class="string">&#x27;传入的不是数组亦或者未能解决的错误&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果是 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 若是要完善的话,要考虑传入的是非数组,</span></span><br><span class="line"><span class="comment">//传入字符串的时候要判断,然后切割为数组..</span></span><br><span class="line"><span class="comment">// 都要考虑进去代码量不短</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="JS-的作用域是什么-有什么特别之处么"><a href="#JS-的作用域是什么-有什么特别之处么" class="headerlink" title="JS 的作用域是什么?有什么特别之处么"></a>JS 的作用域是什么?有什么特别之处么</h2><p>作用域就是有它自身的上下文区域(比如函数内),内部会有变量声明提升,函数声明提升这些;</p>
+<p>函数声明提升优于变量声明提升..</p>
+<p>作用域有全局作用域和块级作用域(局部,比如用 let 或者单纯花括号的);</p>
+<p>作用域会影响 this 的指向</p>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>当访问一个变量时，解释器会首先在当前作用域查找标示符，如果没有找到，就去父作用域找，直到找到该变量的标示符或者不在父作用域中，这就是作用域链</p>
+<p>作用域链和原型继承查找时的区别：如果去查找一个普通对象的属性，但是在当前对象和其原型中都找不到时，会返回 undefined；但查找的属性在作用域链中不存在的话就会抛出 ReferenceError。</p>
+<p>作用域链的顶端是全局对象，在全局环境中定义的变量就会绑定到全局对象中。</p>
+<h2 id="javascript-里面的继承怎么实现，如何避免原型链上面的对象共享"><a href="#javascript-里面的继承怎么实现，如何避免原型链上面的对象共享" class="headerlink" title="javascript 里面的继承怎么实现，如何避免原型链上面的对象共享"></a>javascript 里面的继承怎么实现，如何避免原型链上面的对象共享</h2><ul>
+<li>ES5:寄生组合式继承:通过借用构造函数来继承属性和原型链来实现子继承父。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ParentClass</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line">ParentClass.prototype.sayHello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;I&#x27;m parent!&quot;</span> + <span class="built_in">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubClass</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//若是要多个参数可以用apply 结合 ...解构</span></span><br><span class="line">  ParentClass.call(<span class="built_in">this</span>, name)</span><br><span class="line">  <span class="built_in">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line">SubClass.prototype = <span class="built_in">Object</span>.create(ParentClass.prototype)</span><br><span class="line">SubClass.prototype.constructor = SubClass</span><br><span class="line">SubClass.prototype.sayChildHello = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;I&#x27;m child &quot;</span> + <span class="built_in">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> testA = <span class="keyword">new</span> SubClass(<span class="string">&#x27;CRPER&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.create()的polyfill</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    function pureObject(o)&#123;</span></span><br><span class="line"><span class="comment">        //定义了一个临时构造函数</span></span><br><span class="line"><span class="comment">         function F() &#123;&#125;</span></span><br><span class="line"><span class="comment">         //将这个临时构造函数的原型指向了传入进来的对象。</span></span><br><span class="line"><span class="comment">         F.prototype = obj;</span></span><br><span class="line"><span class="comment">         //返回这个构造函数的一个实例。该实例拥有obj的所有属性和方法。</span></span><br><span class="line"><span class="comment">         //因为该实例的原型是obj对象。</span></span><br><span class="line"><span class="comment">         return new F();</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ES6: 其实就是 ES5 的语法糖,不过可读性很强</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParentClass</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">sayHello</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;I&#x27;m parent!&quot;</span> + <span class="built_in">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">ParentClass</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">sayChildHello</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;I&#x27;m child &quot;</span> + <span class="built_in">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 重新声明父类同名方法会覆写,ES5的话就是直接操作自己的原型链上</span></span><br><span class="line">  <span class="function"><span class="title">sayHello</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;override parent method !,I&#x27;m sayHello Method&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> testA = <span class="keyword">new</span> SubClass(<span class="string">&#x27;CRPER&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染海量数据且给每条内容添加监听事件"><a href="#渲染海量数据且给每条内容添加监听事件" class="headerlink" title="渲染海量数据且给每条内容添加监听事件"></a>渲染海量数据且给每条内容添加监听事件</h2><p>现在浏览器提供了<code>requestAnimationFrame</code>API 来解决非常耗时的代码段对渲染阻塞问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> ndContainer = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;js-list&#x27;</span>)</span><br><span class="line">  <span class="keyword">if</span> (!ndContainer) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> total = <span class="number">30000</span></span><br><span class="line">  <span class="keyword">const</span> batchSize = <span class="number">4</span> <span class="comment">// 每批插入的节点次数，越大越卡</span></span><br><span class="line">  <span class="keyword">const</span> batchCount = total / batchSize <span class="comment">// 需要批量处理多少次</span></span><br><span class="line">  <span class="keyword">let</span> batchDone = <span class="number">0</span> <span class="comment">// 已经完成的批处理个数</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">appendItems</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//这是掘金答案，可是个人觉得innerHTML会更好，经测试是真的更好</span></span><br><span class="line">    <span class="keyword">const</span> fragment = <span class="built_in">document</span>.createDocumentFragment()</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; batchSize; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> ndItem = <span class="built_in">document</span>.createElement(<span class="string">&#x27;li&#x27;</span>)</span><br><span class="line">      ndItem.innerText = batchDone * batchSize + i + <span class="number">1</span></span><br><span class="line">      fragment.appendChild(ndItem)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 每次批处理只修改 1 次 DOM</span></span><br><span class="line">    ndContainer.appendChild(fragment)</span><br><span class="line"></span><br><span class="line">    batchDone += <span class="number">1</span></span><br><span class="line">    doBatchAppend()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">doBatchAppend</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (batchDone &lt; batchCount) &#123;</span><br><span class="line">      <span class="built_in">window</span>.requestAnimationFrame(appendItems)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// kickoff</span></span><br><span class="line">  doBatchAppend()</span><br><span class="line"></span><br><span class="line">  ndContainer.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> target = e.target</span><br><span class="line">    <span class="keyword">if</span> (target.tagName === <span class="string">&#x27;LI&#x27;</span>) &#123;</span><br><span class="line">      alert(target.innerHTML)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue-中-watch-和计算属性的区别"><a href="#vue-中-watch-和计算属性的区别" class="headerlink" title="vue 中 watch 和计算属性的区别"></a>vue 中 watch 和计算属性的区别</h2><ul>
+<li>计算属性是自动监听依赖值的变化，从而动态返回内容，监听到值变化时，可以出发一次回调，并做一些事情，若是仅需要动态值就使用计算属性</li>
+<li>需要知道值改变后执行业务逻辑，才用 watch</li>
+</ul>
+<h2 id="为什么通常在发送数据买点请求的时候使用的是-1-1-像素的透明-gif-图片。"><a href="#为什么通常在发送数据买点请求的时候使用的是-1-1-像素的透明-gif-图片。" class="headerlink" title="为什么通常在发送数据买点请求的时候使用的是 1*1 像素的透明 gif 图片。"></a>为什么通常在发送数据买点请求的时候使用的是 1*1 像素的透明 gif 图片。</h2><ol>
+<li>没有跨域问题，一般这种数据上报，代码要写通用的</li>
+<li>不会阻塞页面加载，影响用户体验，只要 new image 对象就好了</li>
+<li>在所有图片中，体积最小</li>
+<li>相比 XMLHttpRequest 对象发送 GET 请求，性能上更好。</li>
+</ol>
+<p>另外该脚本的位置一般放在页面最后以免阻塞页面渲染,并且一般情况下也不需要 append 到 DOM 中。通过它的 onerror 和 onload 事件来检测发送状态</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thisPage = location.href</span><br><span class="line"><span class="keyword">var</span> referringPage = <span class="built_in">document</span>.referrer ? <span class="built_in">document</span>.referrer : <span class="string">&#x27;none&#x27;</span></span><br><span class="line"><span class="keyword">var</span> beacon = <span class="keyword">new</span> Image()</span><br><span class="line">beacon.src =</span><br><span class="line">  <span class="string">&#x27;http://www.example.com/logger/beacon.gif?page=&#x27;</span> +</span><br><span class="line">  <span class="built_in">encodeURI</span>(thisPage) +</span><br><span class="line">  <span class="string">&#x27;&amp;ref=&#x27;</span> +</span><br><span class="line">  <span class="built_in">encodeURI</span>(referringPage)</span><br></pre></td></tr></table></figure>
+
+<h2 id="input-搜索如何防抖，如何处理中文输入"><a href="#input-搜索如何防抖，如何处理中文输入" class="headerlink" title="input 搜索如何防抖，如何处理中文输入"></a>input 搜索如何防抖，如何处理中文输入</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个是用来获取当前时间戳的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">now</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> +<span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数，返回函数连续调用时，空闲时间必须大于或等于 wait，func 才会执行</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param  <span class="type">&#123;function&#125;</span> </span>func        回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param  <span class="type">&#123;number&#125;</span>   </span>wait        表示时间窗口的间隔</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param  <span class="type">&#123;boolean&#125;</span>  </span>immediate   设置为ture时，是否立即调用函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;function&#125;</span>             </span>返回客户调用函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait = <span class="number">50</span>, immediate = <span class="literal">true</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer, context, args</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 延迟执行函数</span></span><br><span class="line">  <span class="keyword">const</span> later = <span class="function">() =&gt;</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 延迟函数执行完毕，清空缓存的定时器序号</span></span><br><span class="line">      timer = <span class="literal">null</span></span><br><span class="line">      <span class="comment">// 延迟执行的情况下，函数会在延迟函数中执行</span></span><br><span class="line">      <span class="comment">// 使用到之前缓存的参数和上下文</span></span><br><span class="line">      <span class="keyword">if</span> (!immediate) &#123;</span><br><span class="line">        func.apply(context, args)</span><br><span class="line">        context = args = <span class="literal">null</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, wait)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这里返回的函数是每次实际调用的函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">...params</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 如果没有创建延迟执行函数（later），就创建一个</span></span><br><span class="line">    <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">      timer = later()</span><br><span class="line">      <span class="comment">// 如果是立即执行，调用函数</span></span><br><span class="line">      <span class="comment">// 否则缓存参数和调用上下文</span></span><br><span class="line">      <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">        func.apply(<span class="built_in">this</span>, params)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        context = <span class="built_in">this</span></span><br><span class="line">        args = params</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个</span></span><br><span class="line">      <span class="comment">// 这样做延迟函数会重新计时</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">      timer = later()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有兼容问题</p>
+<h2 id="DNS-预解析"><a href="#DNS-预解析" class="headerlink" title="DNS 预解析"></a>DNS 预解析</h2><p>DNS 解析也是需要时间的，可以通过与解析的方式来蔚县获得域名所对应的 IP<br><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//yuchengkai.cn&quot; /&gt;</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;display:none;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <picture><source srcset="/images/wechatpay.webp" type="image/webp"><img loading="lazy" id="wechat_qr" src="/images/wechatpay.png" alt=" 微信扫一扫，向我赞赏"/></picture>
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <picture><source srcset="/images/alipay.webp" type="image/webp"><img loading="lazy" id="alipay_qr" src="/images/alipay.png" alt=" 支付宝扫一扫，向我赞赏"/></picture>
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E4%BC%98%E5%8C%96/" rel="next" title="优化-seo优化">
+                <i class="fas fa-angle-left"></i> 优化-seo优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/HTTP2/" rel="prev" title="HTTP2">
+                HTTP2 <i class="fas fa-angle-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+                <audio src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/music/langlangqintian.mp3"  controls="controls" style="width:100%;height:35px;"></audio>
+            
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/gihubpage-1.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">卑微的</span>打工仔</p>
+              <p class="site-description motion-element" itemprop="description">瑜者？愉者、愚者</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          <div class="des-of-author">
+              <div class="des-of-author-nav">
+                
+                  
+                    <div class="des-of-author-title active" data-index="1">罗曼·罗兰</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="2">村上春树</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="3">宫崎骏</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="4">道德经</div>
+                  
+                
+              </div>
+              <div class="des-of-author-panel">
+                
+                  
+                    <div class="des-of-author-des active" data-index="1">世界上只有一种真正的英雄主义，就是认清了生活的真相后还依然热爱它。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="2">你要听话，不是所有的鱼都会生活在同一片海里。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="3">即使不舍，也该心存感激，然后挥手道别。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="4">知白守黑 和光同尘</div>
+                  
+                
+              </div>
+          </div>
+
+          <details class="views-top-wrap" style="display:none;">
+            <summary class="views-top-name scaleup">看爆 Top5</summary>
+            <ul class="views-top"></ul>
+          </details>
+
+   
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A0%B7%E5%BC%8F%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%AD%90%E5%85%83%E7%B4%A0%E7%BB%A7%E6%89%BF"><span class="nav-number">1.</span> <span class="nav-text">CSS 有哪些样式可以给子元素继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#box-sizing-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%B1%9E%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B-%E5%88%86%E5%88%AB%E6%9C%89%E5%95%A5%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">box-sizing 常用的属性有哪些? 分别有啥作用?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E6%A0%B7%E5%BC%8F%E6%9D%83%E9%87%8D%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">3.</span> <span class="nav-text">说说样式权重的优先级;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E7%BB%84-%E2%80%982018-03-05%E2%80%99-%E2%80%982013-06-12%E2%80%99-%E2%80%992019-03-12%E2%80%99-%E2%80%992018-03-05%E2%80%99-%E2%80%992014-02-22%E2%80%99-%E5%8E%BB%E9%87%8D%E4%B8%94%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">对数组 [‘2018-03-05’, ‘2013-06-12’,’2019-03-12’,’2018-03-05’,’2014-02-22’] 去重且排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E7%BB%84-1-2-3-4-5-%E2%80%996%E2%80%99-7-%E2%80%998%E2%80%99-%E2%80%99a%E2%80%99-%E2%80%99b%E2%80%99-%E2%80%99z%E2%80%99-%E8%BF%9B%E8%A1%8C%E4%B9%B1%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">对数组[1,2,3,4,5,’6’,7,’8’,’a’,’b’,’z’]进行乱序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82-1-10-11-1-%E2%80%99-5%E2%80%99-12-13-14-15-2-3-4-7-8-9-%E5%86%85%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E5%B7%AE"><span class="nav-number">6.</span> <span class="nav-text">求[1, 10, 11, -1,’-5’,12, 13, 14, 15, 2, 3, 4, 7, 8, 9]内最大值与最小值之差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88-%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E5%88%AB%E4%B9%8B%E5%A4%84%E4%B9%88"><span class="nav-number">7.</span> <span class="nav-text">JS 的作用域是什么?有什么特别之处么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="nav-number">7.1.</span> <span class="nav-text">作用域链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript-%E9%87%8C%E9%9D%A2%E7%9A%84%E7%BB%A7%E6%89%BF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%EF%BC%8C%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB"><span class="nav-number">8.</span> <span class="nav-text">javascript 里面的继承怎么实现，如何避免原型链上面的对象共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%94%E7%BB%99%E6%AF%8F%E6%9D%A1%E5%86%85%E5%AE%B9%E6%B7%BB%E5%8A%A0%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="nav-number">9.</span> <span class="nav-text">渲染海量数据且给每条内容添加监听事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-%E4%B8%AD-watch-%E5%92%8C%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">10.</span> <span class="nav-text">vue 中 watch 和计算属性的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%9A%E5%B8%B8%E5%9C%A8%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E4%B9%B0%E7%82%B9%E8%AF%B7%E6%B1%82%E7%9A%84%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%AF-1-1-%E5%83%8F%E7%B4%A0%E7%9A%84%E9%80%8F%E6%98%8E-gif-%E5%9B%BE%E7%89%87%E3%80%82"><span class="nav-number">11.</span> <span class="nav-text">为什么通常在发送数据买点请求的时候使用的是 1*1 像素的透明 gif 图片。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-%E6%90%9C%E7%B4%A2%E5%A6%82%E4%BD%95%E9%98%B2%E6%8A%96%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5"><span class="nav-number">12.</span> <span class="nav-text">input 搜索如何防抖，如何处理中文输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-%E9%A2%84%E8%A7%A3%E6%9E%90"><span class="nav-number">13.</span> <span class="nav-text">DNS 预解析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image">
+
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/footer.png" alt="network">
+      </div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+
+
+<p>© <span itemprop="copyrightYear">2021</span> ColorfulWorld.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.74.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+</p>
+<p>Made with <i class="fas fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">ColorfulWorld</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/images/scroll.png" alt="network">
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.74"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!--<script>
+    // remove service worker cache
+    // from https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
+    "use strict";
+    if(navigator.serviceWorker)
+    {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+  </script>-->
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/fonts/Candyshop.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.74" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=0.0.74">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=0.0.74">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.0.74" color="#fff">
+
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+
+  <meta name="keywords" content="colorfulWorld,blog" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ColorfulWorld" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Vue API 中的小知识点运用与总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue小知识点运用">
+<meta property="og:url" content="https://colorfulworld.github.io/Vue%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9%E8%BF%90%E7%94%A8/index.html">
+<meta property="og:site_name" content="ColorfulWorld">
+<meta property="og:description" content="Vue API 中的小知识点运用与总结">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-07-09T06:56:06.000Z">
+<meta property="article:modified_time" content="2021-04-24T15:38:33.649Z">
+<meta property="article:author" content="ColorfulWorld">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.0.74',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '6/21/2016 11:30:00',
+    site: {
+      title: '',
+      subtitle: '',
+      author: ''
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/favicon.ico',
+      hidden: '/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.2/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://colorfulWorld.github.io/Vue小知识点运用/"/>
+
+
+
+
+
+  <title>Vue小知识点运用 | ColorfulWorld</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fas fa-meteor"></i> <br />
+            
+            首页
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fas fa-archive"></i> <br />
+            
+            归档
+          </a>
+          
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fas fa-calendar"></i> <br />
+            
+            分类
+          </a>
+          
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper">
+  <div class="site-brand-bg">
+    <picture>
+      <img loading="lazy" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/githubpage-bg.jpg">
+    </picture>
+  </div>
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate-stroke" class="animate">
+            <span>
+                  <svg>
+                    <use xlink:href="#strokeC"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokef"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeu"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeW"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokeo"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroker"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#strokel"></use>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <use xlink:href="#stroked"></use>
+                  </svg>
+                </span>
+          </div>
+          <div id="animate" class="animate">
+            <span>
+                  <svg>
+                    <text id="strokeC">C</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokef">f</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeu">u</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeW">W</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokeo">o</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroker">r</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="strokel">l</text>
+                  </svg>
+                </span><span>
+                  <svg>
+                    <text id="stroked">d</text>
+                  </svg>
+                </span>
+          </div>
+          <div id="guide" class="guide">
+            <span>C</span><span>o</span><span>l</span><span>o</span><span>r</span><span>f</span><span>u</span><span>l</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar scaleup" itemprop="image" src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg" alt="network" />
+    <h2 class="site-master-description scaleup" itemprop="description">
+        不负所爱
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">07月</div>
+			<div class="post-day">09</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/Vue/" itemprop="url" rel="index">
+          <span itemprop="name">Vue</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://colorfulWorld.github.io/Vue%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9%E8%BF%90%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.1/images/small-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColorfulWorld">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue小知识点运用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T14:56:06+08:00">2019-07-09</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="far fa-file-word"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">2180</span>
+              
+
+              
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%85%B1%E4%BA%AB"><span class="nav-text">状态共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable"><span class="nav-text">Observable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%BF%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-text">长列表性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="nav-text">函数式组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%91%E5%90%AC%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">监听组件的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%85%A5"><span class="nav-text">混入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%92%8C%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-text">前端路由和后端路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-text">后端路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-text">前端路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0"><span class="nav-text">前端路由实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pjax-PushState-Ajax"><span class="nav-text">Pjax(PushState+Ajax)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hjax-Hash-Ajax"><span class="nav-text">Hjax(Hash+Ajax)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-text">前端路由的缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-%E5%88%97%E8%A1%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E7%9A%84-key-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">vue 列表组件中的 key 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%86%85%E5%AF%BC%E8%88%AA%E4%B9%8B-beforeRouteUpdate-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">组件内导航之 beforeRouteUpdate 的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forceUpdate"><span class="nav-text">$forceUpdate()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beforeDestroy"><span class="nav-text">$beforeDestroy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-pre"><span class="nav-text">v-pre</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-cloak-%E6%8C%87%E4%BB%A4"><span class="nav-text">v-cloak 指令</span></a></li></ol></div>
+      
+      
+
+      
+        <p>Vue API 中的小知识点运用与总结</p>
+<span id="more"></span>
+
+<h2 id="状态共享"><a href="#状态共享" class="headerlink" title="状态共享"></a>状态共享</h2><p>随着组件的细化，就会遇到多组件状态共享的情况，Vuex 当然可以解决这些问题，但是如果应用不够大，为避免代码繁琐冗余，最好不要使用它。我们可以通过使用 Observable API 应对一些简单的跨组件数据状态共享的情况。</p>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><p>让一个对象可响应。Vue 内部会用它来处理 data 函数返回的对象。可以实现简单的 store 管理。</p>
+<p>返回的对象可以直接在渲染函数和计算属性中使用，并在编译时触发适当的更新。它还可以用作简单场景的最小跨组件状态存储：</p>
+<p>store.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = vue.observable(&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> mutation = &#123;</span><br><span class="line">  <span class="function"><span class="title">setCount</span>(<span class="params">count</span>)</span> &#123;</span><br><span class="line">    store.count = count</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应用组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hello&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> @<span class="attr">click</span>=<span class="string">&quot;setCount(testCount + 1)&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> @<span class="attr">click</span>=<span class="string">&quot;setCount(testCount - 1)&quot;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;testCount&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">&#x27;./test&#x27;</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> &#123; store, mutation &#125; <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">    name: <span class="string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">        msg: <span class="string">&#x27;Welcome to Your Vue.js App&#x27;</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">      test</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      setCount: mutation.setCount</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line"><span class="javascript">      <span class="function"><span class="title">testCount</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> store.count</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>test 组件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>test&#123;&#123;testCount&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> &#123; store &#125; <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    computed: &#123;</span><br><span class="line"><span class="javascript">      <span class="function"><span class="title">testCount</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> store.count</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="长列表性能优化"><a href="#长列表性能优化" class="headerlink" title="长列表性能优化"></a>长列表性能优化</h2><p>vue 是通过 object.defineProperty 对数据进行劫持，来实现视图响应数据的变化，然而有些时候我们的组件就是纯粹的展示，不需要 vue 劫持我们的数据，在大量数据展示的情况下，这能够很明显的减少组件初始化的时间，<strong>我们可以通过<code>object.freeze</code>方法来冻结一个对象，一旦被冻结的对象就再也不能被修改了</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data: <span class="function">() =&gt;</span> (&#123; <span class="attr">user</span>: &#123;&#125; &#125;),</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">created</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> users = <span class="keyword">await</span> axios.get(<span class="string">&#x27;api/users&#x27;</span>)</span><br><span class="line">    <span class="built_in">this</span>.users = <span class="built_in">Object</span>.freeze(users)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里仅仅是冻结了 user 的值，引用不会被冻结，当我们需要 reactive 数据的时候，我们可以重新给 users 赋值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export default &#123; data: () =&gt; (&#123; users: [] &#125;), async created() &#123; const users =</span><br><span class="line">await axios.get(&quot;/api/users&quot;); this.users = Object.freeze(users); &#125;, methods: &#123;</span><br><span class="line">a() &#123; //改变值不会触发视图响应 this.users[0] = newValue;</span><br><span class="line">//改变引用依然会触发视图响应 this.users = newValue; &#125; &#125; &#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h2><p>App.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    &lt;List</span><br><span class="line">      :items=&quot;[&#x27;Wonderwoman&#x27;, &#x27;Ironman&#x27;]&quot;</span><br><span class="line">      :item-click=&quot;item =&gt; (clicked = item)&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Clicked hero: &#123;&#123; clicked &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">&#x27;./List&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">    name: <span class="string">&#x27;App&#x27;</span>,</span></span><br><span class="line"><span class="javascript">    data: <span class="function">() =&gt;</span> (&#123; <span class="attr">clicked</span>: <span class="string">&#x27;&#x27;</span> &#125;),</span></span><br><span class="line">    components: &#123; List &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>List.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">functional</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">&quot;item in props.items&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;props.itemClick(item);&quot;</span>&gt;</span></span><br><span class="line">      &#123;&#123; item &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="监听组件的生命周期"><a href="#监听组件的生命周期" class="headerlink" title="监听组件的生命周期"></a>监听组件的生命周期</h2><p>比如有父组件 Parent 和子组件 Child，如果父组件监听到子组件挂载 mounted 就做一些逻辑处理，常规写法可能如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Parent.vue</span><br><span class="line"><span class="tag">&lt;<span class="name">Child</span> @<span class="attr">mounted</span>=<span class="string">&quot;doSomething&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">// Child.vue mounted() &#123; this.$emit(&quot;mounted&quot;); &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="混入"><a href="#混入" class="headerlink" title="混入"></a>混入</h2><p>分发 Vue 组件中的可复用功能<br>当我们开发应用时，经常会遇到一些功能和逻辑，需要在不同的组件间多次使用，比如同样的方法逻辑，两个组件都要用到，但我们又不想也不应该完全复制两遍，这个时候就该用 mixins 了。<br>这意味着，如果我创建了一个组件，它有 X 个不同的方法、周期逻辑、本地的状态等，我想复用它们，我就可以创建个 mixins，让其他的组件扩展这个 mixins，就可以在这些新的组件里使用原本它们没有的方法了</p>
+<h2 id="前端路由和后端路由"><a href="#前端路由和后端路由" class="headerlink" title="前端路由和后端路由"></a>前端路由和后端路由</h2><p>对于路由这快的认知有一个盲点，好像都没有考虑过一直以来 jquery 等应用的页面的路由是怎么样的，webpack 管理的多页应用的路由又是怎么样实现的。</p>
+<h2 id="后端路由"><a href="#后端路由" class="headerlink" title="后端路由"></a>后端路由</h2><p>对于普通的网站，所有超链接都是 URL 地址，所有 URL 地址都对应服务器上对应的资源。</p>
+<h2 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a>前端路由</h2><p>对于单页应用来说，主要通过 url 中的 hash（#号）来传值，来实现不同网页之间的切换。在单页面应用程序中，这种通过 hash 改变来切换页面的方式，称作前端路由（区别于后端路由）。</p>
+<h3 id="前端路由实现"><a href="#前端路由实现" class="headerlink" title="前端路由实现"></a>前端路由实现</h3><h4 id="Pjax-PushState-Ajax"><a href="#Pjax-PushState-Ajax" class="headerlink" title="Pjax(PushState+Ajax)"></a>Pjax(PushState+Ajax)</h4><p>原理：利用 ajax 请求替代了 a 标签的默认跳转，然后利用 html5 中的 API 修改了 url。</p>
+<p><strong>API：history.pushState 和 history.replaceSate。</strong></p>
+<p>history.pushState 和 history.replaceSate 是 HTML5 的新接口,他们可以做到改变网址却不需要刷新页面，这个特性后来就运用到了单页应用，比如：vue-router,react-router-dom 里面，pushSate 会增加一条新的历史记录，而 replaceState 则会替换当前的历史记录。（Ajax 可以实现页面的无刷新操作，于是，返回的时候，通过 url 或者其他传参，我们就可以还原到 Ajax 之前的模样）</p>
+<p>浏览器的前进和后退，会触发 window.onpopstate 事件，通过绑定 popstate 事件，就可以根据当前 url 地址中的查询内容让对应的菜单执行 Ajax 载入，实现 Ajax 的前进和后退效果。</p>
+<p>页面首次载入的时候，如果没有查询地址、或查询地址不匹配，则使用第一个菜单的 Ajax 地址的查询内容，并使用 history.replaceSate 更改当前的浏览器历史，然后触发 Ajax 操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.history.pushSate(<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">&#x27;name/blue&#x27;</span>)</span><br><span class="line"><span class="built_in">window</span>.history.pushSate(<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">&#x27;name/orange&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Hjax-Hash-Ajax"><a href="#Hjax-Hash-Ajax" class="headerlink" title="Hjax(Hash+Ajax)"></a>Hjax(Hash+Ajax)</h4><p>原理：url 中常会出现# ，一可以表示锚点（如回到顶部的按钮的原理），而是路由里的锚点（hash）,web 服务器并不会解析 hash，也就是说#后的内容 web 服务都会自动忽略，但是 javascript 是可以通过 window.loacation.hash 读取到的，读取到路径加以解析之后就可以响应不同路径的逻辑处理。</p>
+<h3 id="前端路由的缺陷"><a href="#前端路由的缺陷" class="headerlink" title="前端路由的缺陷"></a>前端路由的缺陷</h3><p>使用浏览器的前进后退键时，会重新发出请求，没有合理的利用缓存。</p>
+<h2 id="vue-列表组件中的-key-的作用"><a href="#vue-列表组件中的-key-的作用" class="headerlink" title="vue 列表组件中的 key 的作用"></a>vue 列表组件中的 key 的作用</h2><p><a target="_blank" rel="noopener" href="https://vuejs.bootcss.com/api/#%E7%89%B9%E6%AE%8A-attribute">官网解释</a></p>
+<p>在没有绑定 key 的情况下，并且在遍历模板简单的情况下（只读模式），会导致虚拟新旧节点对比更快，节点也会被复用，这种复用就是就地复用。但是现在 key 是必须要绑定的啊</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;i in dataList&quot;</span>&gt;</span>&#123;&#123; i &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      dataList: [1, 2, 3, 4, 5]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上的例子，v-for 的内容会生成以下的 dom 节点数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;[</span><br><span class="line">  <span class="string">&#x27;&lt;div&gt;1&lt;/div&gt;&#x27;</span>, <span class="comment">// id： A</span></span><br><span class="line">  <span class="string">&#x27;&lt;div&gt;2&lt;/div&gt;&#x27;</span>, <span class="comment">// id:  B</span></span><br><span class="line">  <span class="string">&#x27;&lt;div&gt;3&lt;/div&gt;&#x27;</span>, <span class="comment">// id:  C</span></span><br><span class="line">  <span class="string">&#x27;&lt;div&gt;4&lt;/div&gt;&#x27;</span>, <span class="comment">// id:  D</span></span><br><span class="line">  <span class="string">&#x27;&lt;div&gt;5&lt;/div&gt;&#x27;</span> <span class="comment">// id:  E</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>改变 dataList 数据，进行数据位置替换，对比改变后的数据</p>
+<h2 id="组件内导航之-beforeRouteUpdate-的使用"><a href="#组件内导航之-beforeRouteUpdate-的使用" class="headerlink" title="组件内导航之 beforeRouteUpdate 的使用"></a>组件内导航之 beforeRouteUpdate 的使用</h2><p>使用场景：</p>
+<p>组件复用；路由跳转；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">    <span class="comment">// 在当前路由改变，但是该组件被复用时调用</span></span><br><span class="line">    <span class="comment">// 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，</span></span><br><span class="line">    <span class="comment">// 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span></span><br><span class="line">    <span class="comment">// 可以访问组件实例 `this`</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="forceUpdate"><a href="#forceUpdate" class="headerlink" title="$forceUpdate()"></a>$forceUpdate()</h2><p>迫使 Vue 实例重新 render 渲染虚拟 DOM，注意不是重新加载组件。结合 vue 生命周期，调用$forceUpdata 后只会触发 beforeUpdata 和 updata 这两个钩子函数，不会触发其他钩子函数。它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。暂时不知道使用场景，组件复用重新渲染有 key</p>
+<h2 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="$beforeDestroy"></a>$beforeDestroy</h2><p>当发生 A-&gt;B 路由跳转时，在 A 页面的$beforeDestroy 钩子函数并不在 B 页面的 beforeCreate 前面</p>
+<h2 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h2><p>用法：跳过这个元素和它的子元素的编译过程，可以用来显示原始 Mustache 标签，跳过大量指令的节点会加快编译</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-pre</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">&#x27;#demo&#x27;</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      message: <span class="string">&#x27;hello vue&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上代码，第一个 span 里的内容不会被编译，显示为<code>&#123;&#123;message&#125;&#125;</code></p>
+<h2 id="v-cloak-指令"><a href="#v-cloak-指令" class="headerlink" title="v-cloak 指令"></a>v-cloak 指令</h2><p>在 vue 渲染完制定的整个 DOM 后才进行显示，它必须和 css 样式一起使用</p>
+<p>在 vue 渲染完指定的整个 DOM 后才进行显示。它必须和 CSS 样式一起使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[v-cloak]&#123; display:none; &#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-cloak</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;display:none;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <picture><source srcset="/images/wechatpay.webp" type="image/webp"><img loading="lazy" id="wechat_qr" src="/images/wechatpay.png" alt=" 微信扫一扫，向我赞赏"/></picture>
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <picture><source srcset="/images/alipay.webp" type="image/webp"><img loading="lazy" id="alipay_qr" src="/images/alipay.png" alt=" 支付宝扫一扫，向我赞赏"/></picture>
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/webWorkers/" rel="next" title="Web Workers">
+                <i class="fas fa-angle-left"></i> Web Workers
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8Dpost%E6%96%B9%E5%BC%8F/" rel="prev" title="常见的四种post方式">
+                常见的四种post方式 <i class="fas fa-angle-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+                <audio src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/music/langlangqintian.mp3"  controls="controls" style="width:100%;height:35px;"></audio>
+            
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/gihubpage-1.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">卑微的</span>打工仔</p>
+              <p class="site-description motion-element" itemprop="description">瑜者？愉者、愚者</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          <div class="des-of-author">
+              <div class="des-of-author-nav">
+                
+                  
+                    <div class="des-of-author-title active" data-index="1">罗曼·罗兰</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="2">村上春树</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="3">宫崎骏</div>
+                  
+                
+                  
+                    <div class="des-of-author-title" data-index="4">道德经</div>
+                  
+                
+              </div>
+              <div class="des-of-author-panel">
+                
+                  
+                    <div class="des-of-author-des active" data-index="1">世界上只有一种真正的英雄主义，就是认清了生活的真相后还依然热爱它。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="2">你要听话，不是所有的鱼都会生活在同一片海里。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="3">即使不舍，也该心存感激，然后挥手道别。</div>
+                  
+                
+                  
+                    <div class="des-of-author-des" data-index="4">知白守黑 和光同尘</div>
+                  
+                
+              </div>
+          </div>
+
+          <details class="views-top-wrap" style="display:none;">
+            <summary class="views-top-name scaleup">看爆 Top5</summary>
+            <ul class="views-top"></ul>
+          </details>
+
+   
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%85%B1%E4%BA%AB"><span class="nav-number">1.</span> <span class="nav-text">状态共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable"><span class="nav-number">1.1.</span> <span class="nav-text">Observable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%BF%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">长列表性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">函数式组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%91%E5%90%AC%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">监听组件的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%85%A5"><span class="nav-number">5.</span> <span class="nav-text">混入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%92%8C%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">6.</span> <span class="nav-text">前端路由和后端路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">7.</span> <span class="nav-text">后端路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">8.</span> <span class="nav-text">前端路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0"><span class="nav-number">8.1.</span> <span class="nav-text">前端路由实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pjax-PushState-Ajax"><span class="nav-number">8.1.1.</span> <span class="nav-text">Pjax(PushState+Ajax)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hjax-Hash-Ajax"><span class="nav-number">8.1.2.</span> <span class="nav-text">Hjax(Hash+Ajax)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-number">8.2.</span> <span class="nav-text">前端路由的缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-%E5%88%97%E8%A1%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E7%9A%84-key-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">9.</span> <span class="nav-text">vue 列表组件中的 key 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%86%85%E5%AF%BC%E8%88%AA%E4%B9%8B-beforeRouteUpdate-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">10.</span> <span class="nav-text">组件内导航之 beforeRouteUpdate 的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forceUpdate"><span class="nav-number">11.</span> <span class="nav-text">$forceUpdate()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beforeDestroy"><span class="nav-number">12.</span> <span class="nav-text">$beforeDestroy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-pre"><span class="nav-number">13.</span> <span class="nav-text">v-pre</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-cloak-%E6%8C%87%E4%BB%A4"><span class="nav-number">14.</span> <span class="nav-text">v-cloak 指令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image">
+
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed@1.3/images/footer.png" alt="network">
+      </div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+
+
+<p>© <span itemprop="copyrightYear">2021</span> ColorfulWorld.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.74.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+</p>
+<p>Made with <i class="fas fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">ColorfulWorld</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <img src="https://cdn.jsdelivr.net/gh/colorfulWorld/cdn-bed/images/scroll.png" alt="network">
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.74"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!--<script>
+    // remove service worker cache
+    // from https://stackoverflow.com/questions/33704791/how-do-i-uninstall-a-service-worker
+    "use strict";
+    if(navigator.serviceWorker)
+    {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+  </script>-->
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+</body>
+</html>
